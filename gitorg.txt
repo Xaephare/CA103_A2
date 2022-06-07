@@ -1,0 +1,27 @@
+GIT REPO
+--login.cpp
+--customer.cpp
+--admin.cpp
+--claim.cpp
+--policy.cpp
+--car.cpp
+--main_menu.cpp
+--data
+----customer_id_counter.text  <- id counters for unique ids
+----admin_id_counter.text  <- id counters for unique ids
+----login_data.csv <-- array of login strcuts
+----customer_data.csv <- csv of users structs
+----admin_data.csv <- csv of admin structs
+----claim_data.csv <- csv of claim structs
+----policy_data.csv <- csv of claim structs
+----cardata.csv <- csv of claim structs
+
+
+------================================-------
+
+KEY:
+-- is a directory layer
+a "varname" with no suffix is a folder
+var."txt"/"csv are whatever the file type is 
+FILES AND FOLDERS MUST! match the names in here, all lower case full names "" for spaces
+all data foes into data folder
