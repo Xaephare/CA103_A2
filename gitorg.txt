@@ -4,7 +4,7 @@ GIT REPO
 --admin.cpp
 --claim.cpp
 --policy.cpp
---car.cpp
+--vehicle.cpp
 --main_menu.cpp
 --data
 ----customer_id_counter.text  <- id counters for unique ids
@@ -14,7 +14,7 @@ GIT REPO
 ----admin_data.csv <- csv of admin structs
 ----claim_data.csv <- csv of claim structs
 ----policy_data.csv <- csv of claim structs
-----cardata.csv <- csv of claim structs
+----vehicle_data.csv <- csv of claim structs
 
 
 ------================================-------
