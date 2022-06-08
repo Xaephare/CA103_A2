@@ -1,11 +1,15 @@
-
 #include <iostream>
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
 using std::cout;
 using std::cin;
 using std::string;
-#include <string>;
-#include <vector>
-using namespace std;
+using std::vector;
+using std::endl;
+
+
 /*void mainMenu() {
 	int choice;
 
@@ -27,8 +31,9 @@ using namespace std;
 	case 3: break;
 	default: cout << "Please pick one of the displayed options by pressing their respective number.";
 
-}
-	*/
+	};
+};*/
+	
 
 
 struct vehicleInfo {
@@ -45,7 +50,8 @@ struct vehicleInfo {
 vector<vehicleInfo> cars = {};
 
 void vehicleData() {
-	int id;
+
+	int id{};
 	vehicleInfo car = {};
 	cout << "Please enter the make of vehicle: \n";
 	cin >> car.make;
@@ -62,14 +68,12 @@ void vehicleData() {
 	cars.push_back(car);
 };
 
+void printVehicle() {
 
-
-
-int main() {
-	vehicleData();
-	//mainMenu();
+	int id{};
 	for (auto i = cars.begin(); i != cars.end(); i++) {
 		vehicleInfo car = *i;
+
 		cout << endl;
 		cout << endl;
 		cout << "Make: " << car.make << endl;
@@ -78,6 +82,19 @@ int main() {
 		cout << "Colour: " << car.colour << endl;
 		cout << "Doors: " << car.doors << " Doors" << endl;
 		cout << "Transmission: " << car.transmission << endl;
-	}
+		std::ofstream vehicleDb;
+		vehicleDb.open("vehicleDb.json");
+		vehicleDb << "Make: " << car.make << "\n" << "Model: " << car.model << "\n" << "Year: " << car.year << "\n" << "Colour: " << car.colour << "\n" << "Doors: " << car.doors << " Doors\n" << "Transmission: " << car.transmission << "\n";
+		vehicleDb.close();
+	};
+};
+
+int main() {
+	//mainMenu();
+	printVehicle();
+	vehicleData();
+	
+
+	
 	return 0;
 }
