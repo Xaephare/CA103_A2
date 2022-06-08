@@ -7,6 +7,8 @@ GIT REPO
 --vehicle.cpp
 --main_menu.cpp
 --data
+----policy_id_counter.txt <--counter for unique ids
+----claim_id_counter.txt <--counterfor unique ids
 ----customer_id_counter.text  <- id counters for unique ids
 ----admin_id_counter.text  <- id counters for unique ids
 ----login_data.csv <-- array of login strcuts
