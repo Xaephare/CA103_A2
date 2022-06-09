@@ -1,12 +1,13 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <fstream>
-using std::cout;
-using std::cin;
+
+
 using std::string;
 using std::vector;
+using std::cin;
+using std::cout;
 using std::endl;
 
 
@@ -37,21 +38,21 @@ using std::endl;
 
 
 struct vehicleInfo {
-	int id{};
-	string make{};
-	string model{};
-	int year{};
-	string colour{};
-	int doors{};
-	string transmission{};
+	//int id{};
+	string make = "null";
+	string model = "null";
+	int year =0;
+	string colour = "null";
+	int doors = 0;
+	string transmission = "null";
 
 
 };
-vector<vehicleInfo> cars = {};
+vector<vehicleInfo> cars;
 
 void vehicleData() {
 
-	int id{};
+//	int id{};
 	vehicleInfo car = {};
 	cout << "Please enter the make of vehicle: \n";
 	cin >> car.make;
@@ -70,7 +71,7 @@ void vehicleData() {
 
 void printVehicle() {
 
-	int id{};
+	//	int id{};
 	for (auto i = cars.begin(); i != cars.end(); i++) {
 		vehicleInfo car = *i;
 
@@ -82,18 +83,29 @@ void printVehicle() {
 		cout << "Colour: " << car.colour << endl;
 		cout << "Doors: " << car.doors << " Doors" << endl;
 		cout << "Transmission: " << car.transmission << endl;
-		std::ofstream vehicleDb;
-		vehicleDb.open("vehicleDb.json");
-		vehicleDb << "Make: " << car.make << "\n" << "Model: " << car.model << "\n" << "Year: " << car.year << "\n" << "Colour: " << car.colour << "\n" << "Doors: " << car.doors << " Doors\n" << "Transmission: " << car.transmission << "\n";
-		vehicleDb.close();
 	};
+}
+
+bool writeCsv(string fileName, string make, string model, int year, string colour, int doors, string transmission) {
+
+
+	std::ofstream file;
+	file.open(fileName, std::ios_base::app);
+	file << make << "," << model << "," << year << "," << colour << "," << doors << transmission << endl;
+	file.close();
+
+	return true;
 };
+
+
+
 
 int main() {
 	//mainMenu();
 	printVehicle();
 	vehicleData();
 	
+	writeCsv("data/vehicleDb.csv", cars[0].make, cars[0].model, cars[0].year, cars[0].colour, cars[0].doors, cars[0].transmission);
 
 	
 	return 0;
