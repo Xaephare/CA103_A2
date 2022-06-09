@@ -48,8 +48,9 @@ struct vehicle{
         getline(cin, colour);
         cout << "Enter insured value: " ;
         cin >> insuredValue;
-            if (insuredValue <= 0 || insuredValue >= 100000){
+            while (insuredValue <= 1 || insuredValue >= 100000){
                 cout << "Invalid value. Insured value must be more than $0 and less than $100000\n";
+                cin >> insuredValue;
             }
 
     }
