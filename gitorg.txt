@@ -6,6 +6,7 @@ GIT REPO
 --policy.cpp
 --vehicle.cpp
 --main_menu.cpp
+--filemanager.cpp
 --data
 ----policy_id_counter.txt <--counter for unique ids
 ----claim_id_counter.txt <--counterfor unique ids
