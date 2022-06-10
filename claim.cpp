@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <ctime>
 using std::cout;
 using std::cin;
 using std::string; 
@@ -35,12 +34,12 @@ struct claim {
 
 
 
-    void makeClaim() {
-        // claimID to be added when file manager.cpp complete
-        cout << "Please enter the registration of the insured vehicle: ";
-        getline(cin, vehicleRegistration);
-        // Logic to be added. Check registration is valid, return not on policy if not.
-        cout << "If your claim is approved. Your payout amount will be: ";
-        //Add payout amount. It will be Ins Value - excess
-    }
+    // void makeClaim() {
+    //     // claimID to be added when file manager.cpp complete
+    //     cout << "Please enter the registration of the insured vehicle: ";
+    //     getline(cin, vehicleRegistration);
+    //     // Logic to be added. Check registration is valid, return not on policy if not.
+    //     cout << "If your claim is approved. Your payout amount will be: ";
+    //     //Add payout amount. It will be Ins Value - excess
+    //}
 };
