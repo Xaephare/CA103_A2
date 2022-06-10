@@ -3,57 +3,34 @@
 #include <string>
 #include <vector>
 
-
 using std::string;
 using std::vector;
 using std::cin;
 using std::cout;
 using std::endl;
 
-
-/*void mainMenu() {
-	int choice;
-
-	cout << "\n------------------------------------------------";
-	cout << "\nEpic vehicle insurance company";
-	cout << "\n------------------------------------------------";
-	cout << "\n\n1 - Log in to existing account.";
-	//New admin account is created from admin options rather than main screen.
-	cout << "\n2 - Create a new account.";
-	cout << "\n3 - Exit program\n";
-
-	cout << "\nPick an option: ";
-	cin >> choice;
-	switch (choice) {
-	case 1: cout << "Run login func";
-		break;
-	case 2: cout << "Run create new func";
-		break;
-	case 3: break;
-	default: cout << "Please pick one of the displayed options by pressing their respective number.";
-
-	};
-};*/
-	
-
-
 struct vehicleInfo {
-	//int id{};
+	int id;
+	int insuredValue =0;
+	string registration = "null";
 	string make = "null";
 	string model = "null";
 	int year =0;
 	string colour = "null";
-	int doors = 0;
+	int doors =0;
 	string transmission = "null";
 
-
 };
+
+
 vector<vehicleInfo> cars;
 
 void vehicleData() {
 
-//	int id{};
+
 	vehicleInfo car = {};
+	cout << "Please enter the registration plate of vehicle: \n";
+	cin >> car.registration;
 	cout << "Please enter the make of vehicle: \n";
 	cin >> car.make;
 	cout << "Please enter the model of vehicle: \n";
@@ -71,12 +48,12 @@ void vehicleData() {
 
 void printVehicle() {
 
-	//	int id{};
 	for (auto i = cars.begin(); i != cars.end(); i++) {
 		vehicleInfo car = *i;
 
 		cout << endl;
 		cout << endl;
+		cout << "Registration: " << car.registration << endl;
 		cout << "Make: " << car.make << endl;
 		cout << "Model: " << car.model << endl;
 		cout << "Year: " << car.year << endl;
@@ -86,12 +63,13 @@ void printVehicle() {
 	};
 }
 
-bool writeCsv(string fileName, string make, string model, int year, string colour, int doors, string transmission) {
+bool writeCsv(string fileName, string registration, string make, string model, int year, string colour, int doors, string transmission) {
 
 
-	std::ofstream file;
-	file.open(fileName, std::ios_base::app);
-	file << make << "," << model << "," << year << "," << colour << "," << doors << transmission << endl;
+	std::ofstream file("\\Vehicle_Insurance\\data");
+
+	file.open(fileName, std::ios::out | std::ios_base::app);
+	file<< "Registration Plate" << "," << registration << "," << "Make" << "," << make << "," << "Model" << "," << model << "," << "Year" << "," << year << "," << "Colour" << "," << colour << "," << "Doors" << "," << doors << "," << "Transmission" << "," << transmission << endl;
 	file.close();
 
 	return true;
@@ -101,11 +79,9 @@ bool writeCsv(string fileName, string make, string model, int year, string colou
 
 
 int main() {
-	//mainMenu();
 	printVehicle();
 	vehicleData();
-	
-	writeCsv("data/vehicleDb.csv", cars[0].make, cars[0].model, cars[0].year, cars[0].colour, cars[0].doors, cars[0].transmission);
+	writeCsv("data/vehicleDb.csv", cars[0].registration, cars[0].make, cars[0].model, cars[0].year, cars[0].colour, cars[0].doors, cars[0].transmission);
 
 	
 	return 0;
