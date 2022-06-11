@@ -26,7 +26,6 @@ void newCustomer() {
 
 	customer addCust;
 
-	addCust.custNum = //last number + 1
 
 	cout << "First Name: ";
 	cin >> addCust.firstName;
@@ -54,7 +53,7 @@ bool writeCsv(string fileName, string customerNumber, string firstName, string l
 int main() {
 
 	//vector size
-	newCustomer();
+	//newCustomer();
 
 	writeCsv("data/customer_data.csv", customerInfo[0].custNum, customerInfo[0].firstName, customerInfo[0].lastName, customerInfo[0].phone, customerInfo[0].email);
 
