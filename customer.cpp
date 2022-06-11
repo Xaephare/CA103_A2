@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <string.h>
 
 
 using std::string;
@@ -22,10 +23,24 @@ struct customer {
 
 vector <customer> customerInfo;
 
+
+//fucking goddamn can't get it to work
+void fetchLastClientNum() {
+
+	string numStr;
+	std::fstream clientId;
+	clientId.open("data/customer_id_counter.txt", std::ios_base::in);
+
+	std::getline(clientId, numStr);
+	//int customerNum = std::stoi(numStr);
+	cout << numStr;
+	int customerNum = 0;
+	clientId.close();
+}
+
 void newCustomer() {
 
 	customer addCust;
-
 
 	cout << "First Name: ";
 	cin >> addCust.firstName;
@@ -51,11 +66,11 @@ bool writeCsv(string fileName, string customerNumber, string firstName, string l
 }
 
 int main() {
+		//addCust.custNum = 
+	fetchLastClientNum();
 
-	//vector size
 	//newCustomer();
-
-	writeCsv("data/customer_data.csv", customerInfo[0].custNum, customerInfo[0].firstName, customerInfo[0].lastName, customerInfo[0].phone, customerInfo[0].email);
+	//writeCsv("data/customer_data.csv", customerInfo[0].custNum, customerInfo[0].firstName, customerInfo[0].lastName, customerInfo[0].phone, customerInfo[0].email);
 
 	return 0;
 
