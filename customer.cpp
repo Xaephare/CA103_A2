@@ -13,7 +13,7 @@ using std::endl;
 
 struct customer {
 
-	string custNum = "0"; //Any client number of 0 is a void client or maybe an admin?
+	int custNum = 0; //Any client number of 0 is a void client or maybe an admin?
 	string firstName = "null";
 	string lastName = "null";
 	string phone = "0";
@@ -24,23 +24,33 @@ struct customer {
 vector <customer> customerInfo;
 
 
-//fucking goddamn can't get it to work
-void fetchLastClientNum() {
+int fetchLastClientNum() {
 
 	string numStr;
 	std::fstream clientId;
-	clientId.open("data/customer_id_counter.txt", std::ios_base::in);
+	clientId.open("data/customer_id_counter.txt", std::ios::in);
 
-	std::getline(clientId, numStr);
-	//int customerNum = std::stoi(numStr);
-	cout << numStr;
-	int customerNum = 0;
+	getline(clientId, numStr);
+	int customerNum = std::stoi(numStr);
 	clientId.close();
+
+	return customerNum;
+}
+
+void writeTxt(string fileName, int customerNumber) {
+	std::fstream file;
+	file.open(fileName, std::ios::out);
+	file << customerNumber;
+	file.close();
 }
 
 void newCustomer() {
 
 	customer addCust;
+
+	int lastCustNum = fetchLastClientNum();
+	addCust.custNum = ++lastCustNum;
+	writeTxt("data/customer_id_counter.txt", lastCustNum);
 
 	cout << "First Name: ";
 	cin >> addCust.firstName;
@@ -48,30 +58,26 @@ void newCustomer() {
 	cin >> addCust.lastName;
 	cout << "Phone number: ";
 	cin >> addCust.phone;
-	cout << "Email adress: ";
+	cout << "Email address: ";
 	cin >> addCust.email;
 	//Add all the new structure values to the vector.
 	customerInfo.push_back(addCust);
 }
 
-bool writeCsv(string fileName, string customerNumber, string firstName, string lastName, string phoneNumber, string emailAddress) {
-
+void writeCsv(string fileName, int customerNumber, string firstName, string lastName, string phoneNumber, string emailAddress) {
 
 	std::ofstream file;
-	file.open(fileName, std::ios_base::app);
+	file.open(fileName, std::ios::app);
 	file << customerNumber << "," << firstName << "," << lastName << "," << phoneNumber << "," << emailAddress << endl;
 	file.close();
-
-	return true;
 }
 
 int main() {
-		//addCust.custNum = 
-	fetchLastClientNum();
 
-	//newCustomer();
-	//writeCsv("data/customer_data.csv", customerInfo[0].custNum, customerInfo[0].firstName, customerInfo[0].lastName, customerInfo[0].phone, customerInfo[0].email);
+	newCustomer();
+	writeCsv("data/customer_data.csv", customerInfo[0].custNum, customerInfo[0].firstName, customerInfo[0].lastName, customerInfo[0].phone, customerInfo[0].email);
+
+	cout << "\nTesting completed successfully";
 
 	return 0;
-
 }

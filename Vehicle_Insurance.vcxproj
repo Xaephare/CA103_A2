@@ -24,6 +24,7 @@
     <ProjectGuid>{dff65c54-4df4-44bf-8947-3c43abeb6d92}</ProjectGuid>
     <RootNamespace>VehicleInsurance</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Customer_information</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,6 +129,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="customer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\customer_id_counter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\customer_data.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

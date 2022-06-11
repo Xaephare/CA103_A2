@@ -19,4 +19,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\customer_id_counter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\customer_data.csv" />
+  </ItemGroup>
 </Project>
