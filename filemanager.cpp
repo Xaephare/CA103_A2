@@ -2,7 +2,15 @@
 #include <fstream>
 #include <string>
 #include <vector>
-using namespace std;  //remove later 
+#include <string.h>
+
+
+using std::cout;
+using std::cin;
+using std::string; 
+using std::ios;
+using std::fstream;
+
 
 int writeTxt(string path, string filename, int assignedID){
     int newID = assignedID + 1;
@@ -34,19 +42,36 @@ int readTxt(string path, string filename){
 void writeCsv(string filename, string incomingData) {
 	std::ofstream file;
 	file.open(filename, std::ios::app);
-	file << incomingData << endl;
+	file << incomingData << "\n";
 	file.close();
 }
 
-//     newfile.open(path + filename,ios::in); //open a file to perform read operation using file object
-//     if (newfile.is_open()){ //checking whether the file is open
-//       string tp;
-//       while(getline(newfile, tp)){ //read data from file object and put it into string.
-//          cout << tp << "\n"; //print the data of the string
-//       }
-//       newfile.close(); //close the file object.
-//    }
 
+string getID(string csvString){
+    int index = csvString.find_first_of(","); 
+    string ID = csvString.substr(0,index);
+    return ID;
+}
+
+
+string readCsv(string filename, string uniqueID){
+    std::ifstream file;
+    bool idNotFound = true;
+    string data = "none";
+
+    file.open(filename, std::ios::in);
+    if (file.is_open()){
+        string currentLine;
+        while(getline(file, currentLine) && idNotFound){
+            if (uniqueID == getID(currentLine)){
+                data = currentLine;
+                idNotFound = false;
+            }
+        }
+        file.close();
+    }
+    return data;
+}
 
 
 int main(){
@@ -55,9 +80,19 @@ int main(){
     //cout << "\n" << "test read = " << test2 << "\n";
 
     // --== Test for writing csv ==--
-    string testCSV1 = "customerID1, username1, password1";
-    string testCSV2 = "customerID2, username2, password2";
-    writeCsv("data/login_data.csv", testCSV1);
-    writeCsv("data/login_data.csv", testCSV2);
+    // string testCSV1 = "customerID1, username1, password1";
+    // string testCSV2 = "customerID2, username2, password2";
+    // writeCsv("data/login_data.csv", testCSV1);
+    // writeCsv("data/login_data.csv", testCSV2);
+
+
+    // --==Test for readCSV ==--
+    string testCSV3 = "101";
+    string testCSV4 = "103";
+    cout << readCsv("data/login_data.csv", testCSV4) << "\n";
+    string test = "111,ddd,fff";
+
+    // cout << test.find_first_of(","); 
+    // cout << getID(test) << "\n";
     return 0;
 }
