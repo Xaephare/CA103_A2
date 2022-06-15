@@ -31,7 +31,7 @@ void read()
 {
 	ifstream fin{};
 	string line;
-	fin.open("data/vehicleDb.csv");
+	fin.open("data/vehicle_data.csv");
 	while (!fin.eof()) {
 		fin >> line;
 		cout << line << "\n";
@@ -134,7 +134,7 @@ int main() {
 	read();   //  read csf function
 	printVehicle();  //  print vehicle data function
 	vehicleData();//  collate vehicle data
-	writeCsv("data/vehicleDb.csv", cars[0].id, cars[0].registration, cars[0].make, cars[0].model, cars[0].year, cars[0].colour, cars[0].doors, cars[0].transmission);//  write to csv function
+	writeCsv("data/vehicle_data.csv", cars[0].id, cars[0].registration, cars[0].make, cars[0].model, cars[0].year, cars[0].colour, cars[0].doors, cars[0].transmission);//  write to csv function
 	
 	return 0;
 }
