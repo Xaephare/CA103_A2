@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;  //remove later 
 
 int writeTxt(string path, string filename, int assignedID){
@@ -30,7 +31,12 @@ int readTxt(string path, string filename){
  }
 
 
-
+void writeCsv(string filename, string incomingData) {
+	std::ofstream file;
+	file.open(filename, std::ios::app);
+	file << incomingData << endl;
+	file.close();
+}
 
 //     newfile.open(path + filename,ios::in); //open a file to perform read operation using file object
 //     if (newfile.is_open()){ //checking whether the file is open
@@ -44,7 +50,14 @@ int readTxt(string path, string filename){
 
 
 int main(){
-    int test2 = readTxt("data/","vehicle_id_counter.txt");
-    cout << "\n" << "test read = " << test2 << "\n";
+    // --==  Test for reading txt files ==--
+    //int test2 = readTxt("data/","vehicle_id_counter.txt");
+    //cout << "\n" << "test read = " << test2 << "\n";
+
+    // --== Test for writing csv ==--
+    string testCSV1 = "customerID1, username1, password1";
+    string testCSV2 = "customerID2, username2, password2";
+    writeCsv("data/login_data.csv", testCSV1);
+    writeCsv("data/login_data.csv", testCSV2);
     return 0;
 }

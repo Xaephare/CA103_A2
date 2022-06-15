@@ -1,8 +1,10 @@
 #include <iostream>
 #include <stdlib.h>
+
 using std::cout;
 using std::cin;
 using std::string; 
+using std::vector;
 
 
 struct customer {
@@ -36,6 +38,11 @@ struct customer {
         cout << "\nPhone number:        " << phone;
         // To be added. Policy number and number of registered vehicles.
     }
+
+
+
+   
+
 };
 
 int main(){
