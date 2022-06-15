@@ -14,4 +14,25 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\admin_data.csv" />
+    <None Include="data\claim_data.csv" />
+    <None Include="data\customer_data.csv" />
+    <None Include="data\login_data.csv" />
+    <None Include="data\policy_data.csv" />
+    <None Include="data\vehicle_data.csv" />
+    <None Include="data\vehicleDb.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\admin_id_counter.txt" />
+    <Text Include="data\claims_id_counter.txt" />
+    <Text Include="data\customer_id_counter.txt" />
+    <Text Include="data\policy_id_counter.txt" />
+    <Text Include="data\vehicle_id_counter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
