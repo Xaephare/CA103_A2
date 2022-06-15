@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{dff65c54-4df4-44bf-8947-3c43abeb6d92}</ProjectGuid>
-    <RootNamespace>VehicleInsurance</RootNamespace>
+    <ProjectGuid>{8156d205-fb85-47db-a4f4-d5a4b2eb50d4}</ProjectGuid>
+    <RootNamespace>admin</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Vehicle_Insurance.cpp" />
+    <ClCompile Include="admin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\admin_data.csv" />
+    <None Include="data\claim_data.csv" />
+    <None Include="data\customer_data.csv" />
+    <None Include="data\login_data.csv" />
+    <None Include="data\policy_data.csv" />
+    <None Include="data\vehicle_data.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\admin_id_counter.txt" />
+    <Text Include="data\claims_id_counter.txt" />
+    <Text Include="data\customer_id_counter.txt" />
+    <Text Include="data\policy_id_counter.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
