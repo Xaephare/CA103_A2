@@ -31,7 +31,7 @@
     <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="admin.cpp">
+    <ClCompile Include="vehicle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

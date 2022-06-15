@@ -1,8 +1,2 @@
-Registration Plate,aet917,Make,sdffds,Model,sffsd,Year,3,Colour,sdf,Doors,0,Transmission,null
-Registration Plate,aet917,Make,mazda,Model,familia,Year,1994,Colour,silver,Doors,5,Transmission,manual
-Registration Plate,sdf,Make,sdffsd,Model,3,Year,0,Colour,null,Doors,0,Transmission,null
-ID,0,Registration Plate,zw1284,Make,toyota,Model,estima,Year,1994,Colour,champgagne,Doors,4,Transmission,automatic
-ID,0,Registration Plate,gr5031,Make,ford,Model,cortina,Year,1973,Colour,tan,Doors,5,Transmission,automatic
-ID,0,Registration Plate,abc1223,Make,fake,Model,mcfakey,Year,1995,Colour,white,Doors,4,Transmission,manual
-ID,0,Registration Plate,ewr45,Make,dfgf,Model,3,Year,0,Colour,null,Doors,0,Transmission,null
-ID,0,Registration Plate,dfsf,Make,sddsfds,Model,sdfsf,Year,3,Colour,dfsgdfgdf,Doors,3,Transmission,dfgf
+Vehicle ID,0,Registration,GR5031,Make,Ford,Model,Cortina,Year,1973,Colour,Tan,Doors,5,Transmission,Automatic
+Vehicle ID,0,Registration,GN5223,Make,Datsun,Model,Sunny,Year,1984,Colour,Primer,Doors,5,Transmission,Manual

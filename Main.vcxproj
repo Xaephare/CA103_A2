@@ -143,7 +143,7 @@
     <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="admin.cpp" />
+    <ClCompile Include="vehicle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
