@@ -5,7 +5,6 @@
 #include <string.h>
 #include <sstream>
 
-
 using std::cout;
 using std::cin;
 using std::string; 
