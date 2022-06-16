@@ -5,7 +5,6 @@
 #include <vector>
 #include "filemanager.h"
 
-
 using std::cout;
 using std::cin;
 using std::string; 
@@ -31,43 +30,34 @@ struct login {
     void registerNewUser(string newUserID){
         string newEmail;
         string newPassword;
-        bool emailVerified;
+        bool emailNotVerified = true;
+        bool passwordNotVerified = true;
         userID = newUserID;
-        
-        cout << "\nREGISTER NEW LEGEND INSURANCE USER\n";
-        cout << "Please enter a valid email eddress: ";
-        getline(cin, newEmail);
-        if (validEmail(newEmail)){
-            emailVerified = true;
-            email = newEmail;
-            cout << "**EMAIL ACCEPTED**\n";
-        }       
-            while (emailVerified != true) {
-            cout << "\nEMAIL INVALID.\nPlease enter a valid email: ";
+   
+        while (emailNotVerified) {
+            cout << "Please enter a valid email eddress: ";
+            cin.ignore();
             getline(cin, newEmail);
-            
-                if (validEmail(newEmail)) {
-                emailVerified = true;
+            if (validEmail(newEmail)) {
                 email = newEmail;
                 cout << "**EMAIL ACCEPTED**\n";
-                }
-        }
-        // If email is verified, then function will move on to password.
-        if (emailVerified == true){
-            bool pwVerified;
-            cout << "\nPasswords must be a min 6 characters long and include at least 1 numeral\n";
-            cout << "Please enter a valid password:\n";
-            getline(cin, newPassword);
-            pwVerified = validPassword(newPassword);
-            password = newPassword;
-
-            while (pwVerified == false){
-                cout << "Please enter a valid password: \n";
-                getline(cin, newPassword);
-                pwVerified = validPassword(newPassword);
+                emailNotVerified = false;
+            }
+            else {
+                cout << "\nEMAIL INVALID.\n";
             }
         }
-
+        // If email is verified, then function will move on to password.
+        cout << "\nPasswords must be a min 6 characters long and include at least 1 numeral\n";
+        while (passwordNotVerified){
+            cout << "\nPlease enter a valid password:\n";
+            cin.ignore();
+            getline(cin, newPassword);
+            if (validPassword(newPassword)) {
+                password = newPassword;
+                passwordNotVerified = false;
+            }
+        }
         string toCSV = userID + "," + email + "," + password;
         writeCsv("data/login_data.csv", toCSV);
     }
@@ -88,12 +78,11 @@ struct login {
             if (pass.size() >= 6) {
                 int passwordIndex, numFlag = 0; //check password contains a number
                 for (passwordIndex = 0; passwordIndex < pass.size(); passwordIndex++) {
-                if (isdigit(pass[passwordIndex])) {
-                    numFlag = 1;
-                    valid = true;
-                    cout << "**PASSWORD ACCEPTED**\n";
-                    
-                }   
+                    if (isdigit(pass[passwordIndex])) {
+                        numFlag = 1;
+                        valid = true;
+                        cout << "**PASSWORD ACCEPTED**\n";
+                    }   
                 }
                 if (numFlag == 0){   
                     cout << "\nInvalid password."; 
@@ -125,11 +114,10 @@ struct login {
 };
 
 
-
-int main() {
-    login test;
-    // test.registerNewUser("testID");
-    //test.printFromCSV("data/login_data.csv", "101");
-    test.loadCSV("data/login_data.csv", "101");
-    return 0;
-}
+// int main() {
+//     login test;
+//     // test.registerNewUser("testID");
+//     //test.printFromCSV("data/login_data.csv", "101");
+//     test.loadCSV("data/login_data.csv", "101");
+//     return 0;
+// }

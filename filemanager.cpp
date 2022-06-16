@@ -5,57 +5,68 @@
 #include <string.h>
 #include <sstream>
 
+
 using std::cout;
 using std::cin;
 using std::string; 
 using std::ios;
 using std::fstream;
 
-
-int writeTxt(string path, string filename, int assignedID){
+#ifndef WRITETXT_H_
+#define WRITETXT_H_
+int writeTxt(string filename, int assignedID){
     int newID = assignedID + 1;
     fstream newfile;
-    newfile.open(path + filename,ios::out); //open a file to perform read operation using file object
+    newfile.open(filename,ios::out); //open a file to perform read operation using file object
     if(newfile.is_open()){ //checking whether the file is open 
         newfile << newID;//inserting text
         newfile.close(); //close the file object
     }
     return newID;
 }
+#endif //writeTxt_H_
 
-int readTxt(string path, string filename){
+
+#ifndef READTXT_H_
+#define READTXT_H_
+int readTxt(string filename){
     string txtID;
     fstream newfile;
     int assignedID;
-    newfile.open(path + filename,ios::in);  
+    newfile.open(filename,ios::in);  
         if(newfile.is_open()){ //checking whether the file is open 
             getline(newfile, txtID);
             assignedID = stoi(txtID); //convert string ID to int ID
             newfile.close(); //close the file object
         }
-    writeTxt(path, filename, assignedID);
+    writeTxt(filename, assignedID);
     return assignedID;
- }
+}
+#endif 
 
-
+#ifndef WRITECSV_H_
+#define WRITECSV_H_
 void writeCsv(string filename, string incomingData) {
 	std::ofstream file;
 	file.open(filename, std::ios::app);
 	file << incomingData << "\n";
 	file.close();
 }
+#endif
 
-
+#ifndef GETID_H_
+#define GETID_H_
 string getID(string csvString){
     int index = csvString.find_first_of(","); 
     string ID = csvString.substr(0,index);
     return ID;
 }
+#endif 
 
 
-
-
-string readCsv(string filename, string uniqueID){
+#ifndef READCSV_H_
+#define READCSV_H_
+string readCSV(string filename, string uniqueID){
     std::ifstream file;
     bool idNotFound = true;
     string data = "none";
@@ -73,9 +84,13 @@ string readCsv(string filename, string uniqueID){
     }
     return data;
 }
+#endif
 
+
+#ifndef CSVTOVECTOR_H_
+#define CSVTOVECTOR_H_
 std::vector<std::string> CSVtoVector(string filename, string uniqueID){
-    string data = readCsv(filename, uniqueID);
+    string data = readCSV(filename, uniqueID);
     std::vector<std::string> vectorData;
     std::stringstream sstr(data);
     while(sstr.good())
@@ -91,6 +106,7 @@ std::vector<std::string> CSVtoVector(string filename, string uniqueID){
     //*/
     return vectorData;
 }
+#endif 
 
 
 // int main(){

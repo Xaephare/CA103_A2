@@ -1,53 +1,63 @@
 #include <iostream>
-#include <stdlib.h>
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <vector>
+#include <string.h>
+#include "login.h"
+#include "filemanager.h"
 
-using std::cout;
-using std::cin;
-using std::string; 
+using std::string;
 using std::vector;
-
+using std::cin;
+using std::cout;
+using std::endl;
 
 struct customer {
-    //login to be added from login struct
-    string firstName,
-        lastName,
-        email; // may be used in login instead
-    int phone;
-
+    login userLoginInfo;
+	string ID; //Any client number of 0 is a void client or maybe an admin?
+	string firstName,
+	    lastName,
+	    phone;
+    
     customer(){
-        firstName = lastName = email = "unassigned";
-        phone = 0;
+        ID = firstName = lastName = phone = "null";
     }
 
-    void getCustomerInfo(){
-        cout << "Thankyou for registering with LEGEND Insurance.\n";
-        cout << "Please enter your information when prompted: \n";
-        cout << "First name: ";
-        getline(cin, firstName);
-        cout << "Last name:  ";
-        getline(cin, lastName);
-        cout << "Email address: ";
-        getline(cin, email); // code for verifying email to be added
+    vector <customer> customerInfo; // what is the utility of this?
+
+
+    string fetchClientNum() { 
+        int ID = readTxt("data/customer_id_counter.txt");
+        writeTxt("data/customer_id_counter.txt", ID);
+        string stringID = std::to_string(ID);
+        return stringID;
+    }
+
+    void newCustomer() {
+        ID = fetchClientNum();
+        cout << "Your Customer ID number is: " << ID << "\n";
+        cout << "First Name: ";
+        cin >> firstName;
+        cout << "Last name: ";
+        cin >> lastName;
         cout << "Phone number: ";
         cin >> phone;
+        userLoginInfo.registerNewUser(ID);
+        
+        string toCSV = ID + "," + firstName + "," + lastName + "," + phone;
+        ::writeCsv("data/customer_data.csv", toCSV);
+
     }
-
-    void printCustomer(){
-        cout << "Customer information for: " << firstName << " " << lastName;
-        cout << "\nEmail address:       " << email;
-        cout << "\nPhone number:        " << phone;
-        // To be added. Policy number and number of registered vehicles.
-    }
-
-
-
-   
 
 };
 
-int main(){
+
+
+int main() {
     customer test;
-    test.getCustomerInfo();
-    test.printCustomer();
-    return 0;
+	test.newCustomer();
+	cout << "\nTesting completed successfully";
+
+	return 0;
 }

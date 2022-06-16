@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include "filemanager.h"
+
 using std::cout;
 using std::cin;
 using std::string; 
@@ -30,6 +32,11 @@ struct policy {
         }
     }
 
+    int assignPolicyID(){
+       int lastID = readTxt("data/policy_data.csv");
+       int id = writeTxt("data/policy_data.csv", lastID);
+
+    }
 
     void printPolicy(){
         cout << "   \nPOLICY INFORMATION FOR: " << id << "\n";
