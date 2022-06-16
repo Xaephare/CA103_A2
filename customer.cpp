@@ -24,9 +24,6 @@ struct customer {
         ID = firstName = lastName = phone = "null";
     }
 
-    vector <customer> customerInfo; // what is the utility of this?
-
-
     string fetchClientNum() { 
         int ID = readTxt("data/customer_id_counter.txt");
         writeTxt("data/customer_id_counter.txt", ID);
@@ -49,10 +46,7 @@ struct customer {
         ::writeCsv("data/customer_data.csv", toCSV);
 
     }
-
 };
-
-
 
 int main() {
     customer test;
