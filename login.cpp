@@ -1,11 +1,16 @@
 #include <iostream>
 #include <regex>
 #include <fstream>
+#include <cstring>  
+#include <vector>
+#include "filemanager.h"
+
 
 using std::cout;
 using std::cin;
 using std::string; 
 using std::endl;
+
 
 struct login {
     string userID;
@@ -23,7 +28,6 @@ struct login {
     }
 
     // Register new customer or admin.
-    // Still need add writing to login_data.txt for storing
     void registerNewUser(string newUserID){
         string newEmail;
         string newPassword;
@@ -63,9 +67,15 @@ struct login {
                 pwVerified = validPassword(newPassword);
             }
         }
-        //writeCsv("data/login_data.csv", email, password);
+
+        string toCSV = userID + "," + email + "," + password;
+        writeCsv("data/login_data.csv", toCSV);
     }
-    
+
+
+    void printDetails(){
+        cout << "ID = " << userID << ", email = " << email << ", password = " << password << "\n"; 
+    }
 
     // Password min 6 characters, with at least 1 number
     bool validPassword(string pass){
@@ -96,21 +106,30 @@ struct login {
     }
 
 
-//  --== Early testing to be deleted once Filemanager is working ==--
-//     void writeCsv(string filename, string email, string password) {
-// 	std::ofstream file;
-// 	file.open(filename, std::ios::app);
-// 	file << email << "," << password << endl;
-// 	file.close();
-// }
+    void printFromCSV(string filename, string ID){
+        string data = "ID not found\n";
+        data = readCSV(filename, ID);
+        cout << data << "\n";
+    }
 
-
+    
+    void loadCSV(string filename, string ID){
+        string data = "ID not found\n";
+        std::vector<std::string> dataVector = CSVtoVector(filename, ID);
+        userID = dataVector[0];
+        email = dataVector[1];
+        password = dataVector[2];
+        cout << "should match now \n";
+    }
 
 };
-    
+
+
 
 int main() {
     login test;
-    test.registerNewUser("testID");
+    // test.registerNewUser("testID");
+    //test.printFromCSV("data/login_data.csv", "101");
+    test.loadCSV("data/login_data.csv", "101");
     return 0;
 }
