@@ -31,7 +31,21 @@
     <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="vehicle.cpp">
+    <ClInclude Include="filemanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="policy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="customer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="login.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
