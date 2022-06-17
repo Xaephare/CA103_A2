@@ -24,19 +24,46 @@ struct vehicleInfo {
 	string transmission = "null";
 
 };
+struct Marker {
 
+
+	//constructor to initialize the variables of the structure
+	//you can provide a default value to your variables
+	Marker() {
+
+	}
+};
+vector <Marker> readVehicles() {
+	std::fstream myFile("data/vehicle_data.csv", std::ios::in);
+	vector<Marker> tempMarker;
+
+	Marker m;
+	string line;
+	while (getline(myFile, line)) {
+		cout << line << endl;
+		//std::istringstream linestream(line);//to split the row into columns/properties
+
+		tempMarker.push_back(m);
+
+	}
+
+
+	myFile.close();
+
+	return(tempMarker);
+}
 
 //  ##############################   Read Function For Vehicles, currently prints line by line, all lines. relies on IDs being built for specific line print   ##############################  //
-void read()
-{
-	ifstream fin{};
-	string line;
-	fin.open("data/vehicle_data.csv");
-	while (!fin.eof()) {
-		fin >> line;
-		cout << line << "\n";
-	}
-}
+//void read()
+//{
+//	ifstream fin{};
+//	string line;
+//	fin.open("data/vehicle_data.csv");
+//	while (!fin.eof()) {
+//		fin >> line;
+//		cout << line << "\n";
+//	}
+//}
 //  ##############################   Read Function For Vehicles, currently prints line by line, all lines. relies on IDs being built for specific line print   ##############################  //
 
 
@@ -120,7 +147,7 @@ void writeCsv(string fileName, int vehicleNum, string registration, string make,
 	std::ofstream file;
 
 	file.open(fileName, std::ios::out | std::ios_base::app);
-	file << "Vehicle ID" << "," << vehicleNum << "," << "Registration" << "," << registration << "," << "Make" << "," << make << "," << "Model" << "," << model << "," << "Year" << "," << year << "," << "Colour" << "," << colour << "," << "Doors" << "," << doors << "," << "Transmission" << "," << transmission << endl;
+	file << "ID#" << "," << vehicleNum << "," << "Registration" << "," << registration << "," << "Make" << "," << make << "," << "Model" << "," << model << "," << "Year" << "," << year << "," << "Colour" << "," << colour << "," << "Doors" << "," << doors << "," << "Transmission" << "," << transmission << endl;
 	file.close();
 };
 
@@ -131,10 +158,10 @@ void writeCsv(string fileName, int vehicleNum, string registration, string make,
 
 
 int main() {
-	read();   //  read csf function
+
 	printVehicle();  //  print vehicle data function
 	vehicleData();//  collate vehicle data
-	writeCsv("data/vehicle_data.csv", cars[0].id, cars[0].registration, cars[0].make, cars[0].model, cars[0].year, cars[0].colour, cars[0].doors, cars[0].transmission);//  write to csv function
-	
+	writeCsv("data/vehicle_data.csv",cars[0].id, cars[0].registration, cars[0].make, cars[0].model, cars[0].year, cars[0].colour, cars[0].doors, cars[0].transmission);//  write to csv function
+	readVehicles();   //  read csf function
 	return 0;
 }
