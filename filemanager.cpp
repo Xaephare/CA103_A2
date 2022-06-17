@@ -12,7 +12,6 @@ using std::string;
 using std::ios;
 using std::fstream;
 
-
 int writeTxt(string filename, int assignedID){  // To be called after ID has been assigned, will increment existing ID by one so it's ready to be assigned the next time readTxt is called
     int newID = assignedID + 1;
     fstream newfile;
@@ -45,7 +44,6 @@ void writeCsv(string filename, string incomingData) { // Called within other fun
 	file << incomingData << "\n";
 	file.close();
 }
-
 
 string getID(string csvString){  
     int index = csvString.find_first_of(","); 

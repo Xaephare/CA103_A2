@@ -14,7 +14,7 @@ using std::fstream;
 
 #ifndef WRITETXT_H_
 #define WRITETXT_H_
-int writeTxt(string filename, int assignedID){
+int writeTxt(string filename, int assignedID){  // To be called after ID has been assigned, will increment existing ID by one so it's ready to be assigned the next time readTxt is called
     int newID = assignedID + 1;
     fstream newfile;
     newfile.open(filename,ios::out); //open a file to perform read operation using file object
@@ -24,20 +24,20 @@ int writeTxt(string filename, int assignedID){
     }
     return newID;
 }
-#endif //writeTxt_H_
+#endif 
 
 
 #ifndef READTXT_H_
 #define READTXT_H_
-int readTxt(string filename){
+int readTxt(string filename){   // Reads ID number ready to be assigned
     string txtID;
     fstream newfile;
     int assignedID;
-    newfile.open(filename,ios::in);  
-        if(newfile.is_open()){ //checking whether the file is open 
+    newfile.open(filename,ios::in);  // Opens file and finds current ID to be assigned
+        if(newfile.is_open()){  
             getline(newfile, txtID);
-            assignedID = stoi(txtID); //convert string ID to int ID
-            newfile.close(); //close the file object
+            assignedID = stoi(txtID); 
+            newfile.close(); 
         }
     writeTxt(filename, assignedID);
     return assignedID;
@@ -46,7 +46,7 @@ int readTxt(string filename){
 
 #ifndef WRITECSV_H_
 #define WRITECSV_H_
-void writeCsv(string filename, string incomingData) {
+void writeCsv(string filename, string incomingData) { // Called within other functions, takes incoming data as a string and writes it to CSV.
 	std::ofstream file;
 	file.open(filename, std::ios::app);
 	file << incomingData << "\n";
@@ -56,7 +56,7 @@ void writeCsv(string filename, string incomingData) {
 
 #ifndef GETID_H_
 #define GETID_H_
-string getID(string csvString){
+string getID(string csvString){  
     int index = csvString.find_first_of(","); 
     string ID = csvString.substr(0,index);
     return ID;
@@ -66,7 +66,7 @@ string getID(string csvString){
 
 #ifndef READCSV_H_
 #define READCSV_H_
-string readCSV(string filename, string uniqueID){
+string readCSV(string filename, string uniqueID){  // Searches CSV for ID to return correct line of
     std::ifstream file;
     bool idNotFound = true;
     string data = "none";

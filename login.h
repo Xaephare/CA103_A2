@@ -10,6 +10,8 @@ using std::cin;
 using std::string; 
 using std::endl;
 
+#ifndef LOGIN_H_
+#define LOGIN_H_
 
 struct login {
     string userID;
@@ -17,7 +19,7 @@ struct login {
     string password;
 
     login() {
-        userID = email = password = "unassigned";
+        userID = email = password = "null";
     }
 
     // Checks email address is valid
@@ -51,11 +53,11 @@ struct login {
         cout << "\nPasswords must be a min 6 characters long and include at least 1 numeral\n";
         while (passwordNotVerified){
             cout << "\nPlease enter a valid password:\n";
-            cin.ignore();
             getline(cin, newPassword);
             if (validPassword(newPassword)) {
                 password = newPassword;
                 passwordNotVerified = false;
+                cout << "**PASSWORD ACCEPTED**\n";
             }
         }
         string toCSV = userID + "," + email + "," + password;
@@ -69,29 +71,28 @@ struct login {
 
     // Password min 6 characters, with at least 1 number
     bool validPassword(string pass){
-        bool valid;
-        while (valid != true) {
+        bool notValid = true;
+        while (notValid) {
             if (pass.size() < 6){
                 cout << "Password is too short.";
                 break;
             }
-            if (pass.size() >= 6) {
+            if (pass.size() >= 6 && notValid) {
                 int passwordIndex, numFlag = 0; //check password contains a number
                 for (passwordIndex = 0; passwordIndex < pass.size(); passwordIndex++) {
                     if (isdigit(pass[passwordIndex])) {
                         numFlag = 1;
-                        valid = true;
-                        cout << "**PASSWORD ACCEPTED**\n";
+                        notValid = false;
                     }   
                 }
-                if (numFlag == 0){   
+                if (numFlag == 0 && notValid){   
                     cout << "\nInvalid password."; 
                     cout <<  "Password must contain at least one numeral and be 6 characters long\n"; 
                 }
             }
             break;  
         }
-     return valid;
+    return !notValid;
     }
 
 
@@ -108,11 +109,11 @@ struct login {
         userID = dataVector[0];
         email = dataVector[1];
         password = dataVector[2];
-        cout << "should match now \n";
+    
     }
 
 };
-
+#endif
 
 // int main() {
 //     login test;
