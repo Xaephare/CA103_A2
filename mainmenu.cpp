@@ -28,9 +28,9 @@ void mainMenu() {
 	}
 }
 
-int main() {
-
-	mainMenu();
-
-	return 0;
-}
+//int main() {
+//
+//	mainMenu();
+//
+//	return 0;
+//}

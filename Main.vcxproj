@@ -143,13 +143,17 @@
     <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="customer.h" />
-    <ClInclude Include="filemanager.h" />
-    <ClInclude Include="policy.h" />
+    <ClInclude Include="header.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="admin.cpp" />
+    <ClCompile Include="claim.cpp" />
     <ClCompile Include="customer.cpp" />
+    <ClCompile Include="filemanager.cpp" />
     <ClCompile Include="login.cpp" />
+    <ClCompile Include="mainmenu.cpp" />
+    <ClCompile Include="policy.cpp" />
+    <ClCompile Include="vehicle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

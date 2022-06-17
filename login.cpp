@@ -3,24 +3,24 @@
 #include <fstream>
 #include <cstring>  
 #include <vector>
-#include "filemanager.h"
+//#include "filemanager.h"
+#include "header.h"
 
 using std::cout;
 using std::cin;
 using std::string; 
 using std::endl;
 
-#ifndef LOGIN_H_
-#define LOGIN_H_
-
-struct login {
-    string userID;
-    string email;
-    string password;
-
-    login() {
-        userID = email = password = "null";
-    }
+struct Login login;
+//struct login {
+//    string userID;
+//    string email;
+//    string password;
+//
+//    login() {
+//        userID = email = password = "null";
+//    }
+//};
 
     // Checks email address is valid
     bool validEmail(string email){
@@ -34,14 +34,14 @@ struct login {
         string newPassword;
         bool emailNotVerified = true;
         bool passwordNotVerified = true;
-        userID = newUserID;
+        login.userID = newUserID;
    
         while (emailNotVerified) {
             cout << "Please enter a valid email eddress: ";
             cin.ignore();
             getline(cin, newEmail);
             if (validEmail(newEmail)) {
-                email = newEmail;
+                login.email = newEmail;
                 cout << "**EMAIL ACCEPTED**\n";
                 emailNotVerified = false;
             }
@@ -55,18 +55,18 @@ struct login {
             cout << "\nPlease enter a valid password:\n";
             getline(cin, newPassword);
             if (validPassword(newPassword)) {
-                password = newPassword;
+                login.password = newPassword;
                 passwordNotVerified = false;
                 cout << "**PASSWORD ACCEPTED**\n";
             }
         }
-        string toCSV = userID + "," + email + "," + password;
+        string toCSV = login.userID + "," + login.email + "," + login.password;
         writeCsv("data/login_data.csv", toCSV);
     }
 
 
     void printDetails(){
-        cout << "ID = " << userID << ", email = " << email << ", password = " << password << "\n"; 
+        cout << "ID = " << login.userID << ", email = " << login.email << ", password = " << login.password << "\n"; 
     }
 
     // Password min 6 characters, with at least 1 number
@@ -106,14 +106,11 @@ struct login {
     void loadCSV(string filename, string ID){
         string data = "ID not found\n";
         std::vector<std::string> dataVector = CSVtoVector(filename, ID);
-        userID = dataVector[0];
-        email = dataVector[1];
-        password = dataVector[2];
+        login.userID = dataVector[0];
+        login.email = dataVector[1];
+        login.password = dataVector[2];
     
     }
-
-};
-#endif
 
 // int main() {
 //     login test;
