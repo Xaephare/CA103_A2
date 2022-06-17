@@ -1,0 +1,31 @@
+GIT REPO
+--login.cpp
+--customer.cpp
+--admin.cpp
+--claim.cpp
+--policy.cpp
+--vehicle.cpp
+--main_menu.cpp
+--filemanager.cpp
+--data
+----policy_id_counter.txt <--counter for unique ids
+----claim_id_counter.txt <--counterfor unique ids
+----customer_id_counter.txt  <- id counters for unique ids
+----admin_id_counter.txt  <- id counters for unique ids
+----vehicle_id_counter.txt < --id counter vehicle
+----login_data.csv <-- array of login strcuts
+----customer_data.csv <- csv of users structs
+----admin_data.csv <- csv of admin structs
+----claim_data.csv <- csv of claim structs
+----policy_data.csv <- csv of claim structs
+----vehicle_data.csv <- csv of claim structs
+
+
+------================================-------
+
+KEY:
+-- is a directory layer
+a "varname" with no suffix is a folder
+var."txt"/"csv are whatever the file type is 
+FILES AND FOLDERS MUST! match the names in here, all lower case full names "" for spaces
+all data foes into data folder
