@@ -81,3 +81,6 @@ void getVehicleInfo();
 
 //menus
 void mainMenu();
+
+//admin
+//uses customer struct
