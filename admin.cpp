@@ -37,7 +37,7 @@ struct customer {
 
     void newAdmin() {
         ID = fetchAdminNum();
-        cout << "Your Customer ID number is: " << ID << "\n";
+        cout << "Your Admin ID number is: " << ID << "\n";
         cout << "First Name: ";
         cin >> firstName;
         cout << "Last name: ";
