@@ -22,6 +22,7 @@
     <None Include="data\policy_data.csv" />
     <None Include="data\vehicle_data.csv" />
     <None Include="data\vehicleDb.csv" />
+    <None Include="data\updated_file_temp_name.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="data\admin_id_counter.txt" />

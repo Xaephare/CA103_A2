@@ -132,6 +132,7 @@
     <None Include="data\customer_data.csv" />
     <None Include="data\login_data.csv" />
     <None Include="data\policy_data.csv" />
+    <None Include="data\updated_file_temp_name.csv" />
     <None Include="data\vehicleDb.csv" />
     <None Include="data\vehicle_data.csv" />
   </ItemGroup>

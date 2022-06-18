@@ -64,8 +64,8 @@ struct Vehicle vehicle;
     }
 
 
-int main() {
-    getVehicleInfo(); 
-    printVehicle();
-    return 0;
-}
+//int main() {
+//    getVehicleInfo(); 
+//    printVehicle();
+//    return 0;
+//}
