@@ -92,7 +92,7 @@ struct Customer customer;
                 return false;
             }
 
-            cout << "\nWhat should this be changed to? \n";
+            cout << "What should this be changed to? \n";
             cin >> updatedValue;
 
             //runs through the whole original file
