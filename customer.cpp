@@ -58,9 +58,9 @@ struct Customer customer;
 
         std::fstream fin, fout;
         //opens existing file
-        fin.open(filename, std::ios_base::in);
+        fin.open(filename, std::ios::in);
         //creates new file to store updated info
-        fout.open("data/updated_file_temp_name.csv", std::ios_base::out);
+        fout.open("data/updated_file_temp_name.csv", std::ios::out);
 
         string updatedValue,
             line = "Null, file did not read",
@@ -102,6 +102,7 @@ struct Customer customer;
 
                 //gets line and creates new stringstream variable
                 getline(fin, line);
+                cout << line;
                 std::stringstream sstr(line);
 
                 //pushes each word from the current line into the vector
@@ -148,7 +149,7 @@ struct Customer customer;
             remove("data/customer_data.csv");
 
             // renaming the updated file with the existing file name
-            rename("data/updated_file_temp_name.csv", "customer_data.csv");
+            rename("data/updated_file_temp_name.csv", "data/customer_data.csv");
 
             return true;
         }
@@ -178,9 +179,11 @@ struct Customer customer;
         return true;
  }
 
+
 int main() {
 	//newCustomer();
     //newPolicy(customer.ID);
+
     string customerID = "0";
     cout << "customer ID to be edited? \n";
     cin >> customerID;
