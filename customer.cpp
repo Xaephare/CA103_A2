@@ -58,12 +58,12 @@ struct Customer customer;
 
         std::fstream fin, fout;
         //opens existing file
-        fin.open(filename, std::ios::in);
+        fin.open(filename, std::ios_base::in);
         //creates new file to store updated info
-        fout.open("data/updated_file_temp_name.csv", std::ios::out);
+        fout.open("data/updated_file_temp_name.csv", std::ios_base::out);
 
         string updatedValue,
-            line,
+            line = "Null, file did not read",
             word,
             fileID;
         int index = 0,
@@ -75,7 +75,7 @@ struct Customer customer;
         cout << "What would you like to edit?";
 
         //different choices are given depending on file name
-        if (filename == "customer_data.csv") {
+        if (filename == "data/customer_data.csv") {
             cout << "\n1 - First name"
                 "\n2 - Last name"
                 "\n3 - Phone number" << endl;
@@ -104,7 +104,7 @@ struct Customer customer;
                 getline(fin, line);
                 std::stringstream sstr(line);
 
-                //pushes each word into the string vector
+                //pushes each word from the current line into the vector
                 while (getline(sstr, word, ',')) {
                     row.push_back(word);
                 }
@@ -129,7 +129,7 @@ struct Customer customer;
                         for (int i = 0; i < rowSize - 1; i++) {
 
                             // write existing data into the new file
-                                fout << row[i] << ", ";
+                                fout << row[i] << ",";
                             }
                             fout << row[rowSize - 1] << "\n";
                     }
@@ -145,7 +145,7 @@ struct Customer customer;
             fout.close();
 
             // removing the existing file
-            remove("customer_data.csv");
+            remove("data/customer_data.csv");
 
             // renaming the updated file with the existing file name
             rename("data/updated_file_temp_name.csv", "customer_data.csv");
@@ -185,7 +185,7 @@ int main() {
     cout << "customer ID to be edited? \n";
     cin >> customerID;
 
-    bool testingCompleted = updateCsv("customer_data.csv", customerID);
+    bool testingCompleted = updateCsv("data/customer_data.csv", customerID);
 	cout << "\nTesting completed successfully: " << testingCompleted;
 
 	return 0;
