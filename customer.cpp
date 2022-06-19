@@ -62,6 +62,11 @@ struct Customer customer;
         //creates new file to store updated info
         fout.open("data/updated_file_temp_name.csv", std::ios::out);
 
+        if (!fin.is_open()) {
+            cout << "Error reading file...";
+            return false;
+        }
+
         string updatedValue,
             line = "Null, file did not read",
             word,
@@ -102,13 +107,19 @@ struct Customer customer;
 
                 //gets line and creates new stringstream variable
                 getline(fin, line);
-                cout << line;
                 std::stringstream sstr(line);
 
                 //pushes each word from the current line into the vector
                 while (getline(sstr, word, ',')) {
                     row.push_back(word);
+                    //if (word == "")
+                    //    break;
                 }
+                //if (word == "") {
+                //    count = 2;
+                //    break;
+                //}
+                    
 
                 fileID = row[0];
                 int rowSize = row.size();
@@ -120,7 +131,7 @@ struct Customer customer;
                     if (!fin.eof()) {
                         for (int i = 0; i < rowSize - 1; i++) {
                             // write the updated data into the new file "data/updated_file_temp_name.csv"
-                            fout << row[i] << ", ";
+                            fout << row[i] << ",";
                         }
                         fout << row[rowSize - 1] << "\n";
                     }
@@ -134,13 +145,16 @@ struct Customer customer;
                             }
                             fout << row[rowSize - 1] << "\n";
                     }
+                    
                 }
-                if (fin.eof()) {
-                    break;
-                }
+            if (fin.eof()) {
+                 break;
+            }
             }
             if (count == 0)
-                cout << "Data not found.\n";
+                cout << "Data not found, nothing was changed.\n";
+            if (count == 2)
+                cout << "Program encountered a 'space' character and had to exit.\n";
 
             fin.close();
             fout.close();
@@ -189,7 +203,7 @@ int main() {
     cin >> customerID;
 
     bool testingCompleted = updateCsv("data/customer_data.csv", customerID);
-	cout << "\nTesting completed successfully: " << testingCompleted;
+	cout << "\nTesting completed: " << testingCompleted;
 
 	return 0;
 }
