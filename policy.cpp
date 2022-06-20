@@ -26,16 +26,32 @@ struct Policy policy;
         switch(policy.policyType) {
             case 1:
                 policyString = "BASIC";
+                policy.policyExcess = "300";
                 break;
             case 2:
                 policyString = "STANDARD";
+                policy.policyExcess = "100";
                 break;
             case 3:
                 policyString = "PREMIUM";
+                policy.policyExcess = "0";
                 break;
         }
         return policyString;
     }
+
+    // Policy vectorToPolicyStruct(std::vector<std::string> CSVpolicyData){
+    //     Policy policyInfo;
+    //     policy.policyID = CSVpolicyData[0];
+    //     if (CSVpolicyData[1] == "BASIC")
+    //         policy.policyType = 1;
+    //     if (CSVpolicyData[1] == "STANDARD")
+    //         policy.policyType = 2;
+    //     if (CSVpolicyData[1] == "PREMIUM")
+    //         policy.policyType = 2;
+
+    //     return policyInfo;
+    //}
 
     void printPolicy(){
         cout << "   \nPOLICY INFORMATION FOR: " << policy.policyID << "\n";
@@ -58,7 +74,7 @@ struct Policy policy;
         } 
         cout << "\nYou have selected " + getPolicyType() << "\n";
 
-        string toCSV = policy.policyID + "," + getPolicyType();
+        string toCSV = policy.policyID + "," + getPolicyType() + "," + policy.policyExcess;
         ::writeCsv("data/policy_data.csv", toCSV);  
     }
 
