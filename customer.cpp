@@ -148,6 +148,11 @@ struct Customer customer;
                     
                 }
             if (fin.eof()) {
+                for (int i = 0; i < rowSize; i++) {
+
+                    // write last line to new file without a newline
+                    fout << row[i] << ",";
+                }
                  break;
             }
             }
