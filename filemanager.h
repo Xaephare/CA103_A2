@@ -12,6 +12,8 @@ using std::string;
 using std::ios;
 using std::fstream;
 
+#ifndef WRITETXT_H_
+#define WRITETXT_H_
 int writeTxt(string filename, int assignedID){  // To be called after ID has been assigned, will increment existing ID by one so it's ready to be assigned the next time readTxt is called
     int newID = assignedID + 1;
     fstream newfile;
@@ -22,11 +24,15 @@ int writeTxt(string filename, int assignedID){  // To be called after ID has bee
     }
     return newID;
 }
+#endif 
 
+
+#ifndef READTXT_H_
+#define READTXT_H_
 int readTxt(string filename){   // Reads ID number ready to be assigned
     string txtID;
     fstream newfile;
-    int assignedID = 0;
+    int assignedID;
     newfile.open(filename,ios::in);  // Opens file and finds current ID to be assigned
         if(newfile.is_open()){  
             getline(newfile, txtID);
@@ -36,20 +42,30 @@ int readTxt(string filename){   // Reads ID number ready to be assigned
     writeTxt(filename, assignedID);
     return assignedID;
 }
+#endif 
 
+#ifndef WRITECSV_H_
+#define WRITECSV_H_
 void writeCsv(string filename, string incomingData) { // Called within other functions, takes incoming data as a string and writes it to CSV.
 	std::ofstream file;
 	file.open(filename, std::ios::app);
 	file << incomingData << "\n";
 	file.close();
 }
+#endif
 
+#ifndef GETID_H_
+#define GETID_H_
 string getID(string csvString){  
     int index = csvString.find_first_of(","); 
     string ID = csvString.substr(0,index);
     return ID;
 }
+#endif 
 
+
+#ifndef READCSV_H_
+#define READCSV_H_
 string readCSV(string filename, string uniqueID){  // Searches CSV for ID to return correct line of
     std::ifstream file;
     bool idNotFound = true;
@@ -67,13 +83,12 @@ string readCSV(string filename, string uniqueID){  // Searches CSV for ID to ret
         file.close();
     }
     return data;
-    cout << data; //debug check
 }
+#endif
 
-// string updateCSV(string filename, string uniqueID){
 
-// }
-
+#ifndef CSVTOVECTOR_H_
+#define CSVTOVECTOR_H_
 std::vector<std::string> CSVtoVector(string filename, string uniqueID){
     string data = readCSV(filename, uniqueID);
     std::vector<std::string> vectorData;
@@ -87,14 +102,14 @@ std::vector<std::string> CSVtoVector(string filename, string uniqueID){
     // FOLLOWING TWO LINES PRINT VECTORS AS TEST 
     ///*
     for (std::size_t i = 0; i < vectorData.size(); i++)
-       std::cout << vectorData[i] << std::endl; 
+        std::cout << vectorData[i] << std::endl; 
     //*/
     return vectorData;
 }
+#endif 
 
-//int main(){
-    //updateCSV("data/customer_data.csv", "2006");
 
+// int main(){
 //     // --==  Test for reading txt files ==--
 //     //int test2 = readTxt("data/","vehicle_id_counter.txt");
 //     //cout << "\n" << "test read = " << test2 << "\n";
@@ -106,15 +121,13 @@ std::vector<std::string> CSVtoVector(string filename, string uniqueID){
 //     // writeCsv("data/login_data.csv", testCSV2);
 
 
-    // --==Test for readCSV ==--
-    // string testCSV3 = "101";
-    // string testCSV4 = "103";
-    // std::vector<std::string> info;
-    // cout << readCSV("data/customer_data.csv", "2006") << "\n";
-    // info = CSVtoVector("data/customer_data.csv", "2006");
-    // string test = "111,ddd,fff";
-    // CSVtoVector("data/login_data.csv", testCSV4);
-    // cout << test.find_first_of(","); 
-    // cout << getID(test) << "\n";
-    //    return 0;
+//     // --==Test for readCSV ==--
+//     string testCSV3 = "101";
+//     string testCSV4 = "103";
+//     cout << readCsv("data/login_data.csv", testCSV4) << "\n";
+//     string test = "111,ddd,fff";
+//     CSVtoVector("data/login_data.csv", testCSV4);
+//     // cout << test.find_first_of(","); 
+//     // cout << getID(test) << "\n";
+//     return 0;
 // }

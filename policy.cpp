@@ -2,8 +2,10 @@
 #include <vector>
 #include <ctime>
 
-//#include "filemanager.h"
+
 #include "header.h"
+//#include "TEST_vehicle.h" - Emma testing.
+//#include "TEST_filemanager.h"
 
 using std::cout;
 using std::cin;
@@ -26,16 +28,32 @@ struct Policy policy;
         switch(policy.policyType) {
             case 1:
                 policyString = "BASIC";
+                policy.policyExcess = "300";
                 break;
             case 2:
                 policyString = "STANDARD";
+                policy.policyExcess = "100";
                 break;
             case 3:
                 policyString = "PREMIUM";
+                policy.policyExcess = "0";
                 break;
         }
         return policyString;
     }
+
+    // Policy vectorToPolicyStruct(std::vector<std::string> CSVpolicyData){
+    //     Policy policyInfo;
+    //     policy.policyID = CSVpolicyData[0];
+    //     if (CSVpolicyData[1] == "BASIC")
+    //         policy.policyType = 1;
+    //     if (CSVpolicyData[1] == "STANDARD")
+    //         policy.policyType = 2;
+    //     if (CSVpolicyData[1] == "PREMIUM")
+    //         policy.policyType = 2;
+
+    //     return policyInfo;
+    //}
 
     void printPolicy(){
         cout << "   \nPOLICY INFORMATION FOR: " << policy.policyID << "\n";
@@ -57,14 +75,18 @@ struct Policy policy;
             cin >> policy.policyType;
         } 
         cout << "\nYou have selected " + getPolicyType() << "\n";
+        string vehicleID = fetchVehicleIDNum();
+        getVehicleInfo(vehicleID);  // Calls from vehicle cpp
 
-        string toCSV = policy.policyID + "," + getPolicyType();
+        string toCSV = policy.policyID + "," + getPolicyType() + "," +  vehicleID + "," + policy.policyExcess;
         ::writeCsv("data/policy_data.csv", toCSV);  
     }
 
-// int main(){
-//     policy test;
-//     test.newPolicy();
-//     test.printPolicy();
-//     return 0;
-// }
+
+
+int main(){
+    policy test;
+    newPolicy("4500");
+    printPolicy();
+    return 0;
+}

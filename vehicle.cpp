@@ -4,6 +4,10 @@
 #include <string>
 
 #include "header.h"
+<<<<<<< HEAD
+=======
+//#include "TEST_filemanager.h" // Header not working - Filemanager working as test
+>>>>>>> 0b99a08 (Vehicle with ID, and Read/write functions. )
 
 using std::cout;
 using std::cin;
@@ -29,10 +33,17 @@ struct Vehicle vehicle;
 //	//string transmission{}
 //};
 
+    string fetchVehicleIDNum() { 
+        int ID = readTxt("data/vehicle_id_counter.txt");
+        writeTxt("data/vehicle_id_counter.txt", ID);
+        string stringID = std::to_string(ID);
+        return stringID;
+    }
+
 
     void printVehicle(){
         cout << "\n";
-        cout << "   VEHICLE INFORMATION FOR: " << vehicle.id << "\n";
+        cout << "   VEHICLE INFORMATION FOR: " << vehicle.ID << "\n";
         cout << "   ---------------------------------- \n";
         cout << "   Vehicle Registration:  " << vehicle.registration << "\n";
         cout << "   Make:                  " << vehicle.make << "\n";
@@ -43,29 +54,35 @@ struct Vehicle vehicle;
 
     }
 
-    void getVehicleInfo(){
-        // unique id to be generated once filemanager.cpp built
+    void getVehicleInfo(string ID){
+        vehicle.ID = fetchVehicleIDNum();
+        string insuredValueStr;
         cout << "Please input vehicle information \n";
-        cout << "Enter registration: ";
-        getline(cin, vehicle.registration);
+        cout << "Enter registration: \n";
+        cin >> vehicle.registration;
         cout << "Enter make: ";
-        getline(cin, vehicle.make);
+        cin >> vehicle.make;
         cout << "Enter model: ";
-        getline(cin, vehicle.model);
+        cin >> vehicle.model;
         cout << "Enter colour: ";
-        getline(cin, vehicle.colour);
+        cin >> vehicle.colour;
         cout << "Enter insured value: " ;
         cin >> vehicle.insuredValue;
             while (vehicle.insuredValue <= 1 || vehicle.insuredValue >= 100000){
                 cout << "Invalid value. Insured value must be more than $0 and less than $100000\n";
                 cin >> vehicle.insuredValue;
+               // insuredValueStr = std::to_string(vehicle.insuredValue);
             }
-
+            insuredValueStr = std::to_string(vehicle.insuredValue);
+            
+            string toCSV = vehicle.ID + "," + vehicle.registration + "," + vehicle.make + "," + vehicle.model + "," + vehicle.colour + "," + insuredValueStr;
+            ::writeCsv("data/vehicle_data.csv", toCSV); 
+            cout << toCSV;
     }
 
 
-int main() {
-    getVehicleInfo(); 
-    printVehicle();
-    return 0;
-}
+// int main() {
+//     getVehicleInfo("2000"); 
+//     printVehicle();
+//     return 0;
+// }
