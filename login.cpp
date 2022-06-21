@@ -85,7 +85,7 @@ struct Login login;
                         notValid = false;
                     }   
                 }
-                if (numFlag == 0 && notValid){   
+                if (numFlag == 0 && notValid) {   
                     cout << "\nInvalid password."; 
                     cout <<  "Password must contain at least one numeral and be 6 characters long\n"; 
                 }
@@ -103,19 +103,49 @@ struct Login login;
     }
 
     
-    void loadCSV(string filename, string ID){
-        string data = "ID not found\n";
+    bool loadLogin(string filename, string ID) {
         std::vector<std::string> dataVector = CSVtoVector(filename, ID);
+
+        if (dataVector.size() == 1) {
+            login.userID = dataVector[0];
+        }
+        else {
         login.userID = dataVector[0];
         login.email = dataVector[1];
         login.password = dataVector[2];
-    
+        }
+
+        if (dataVector[0] == "none") {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
-// int main() {
-//     login test;
-//     // test.registerNewUser("testID");
-//     //test.printFromCSV("data/login_data.csv", "101");
-//     test.loadCSV("data/login_data.csv", "101");
-//     return 0;
-// }
+    void checkLogin() {
+        
+        bool notConfirmed = true;
+        Login compare;
+
+        for (int loginAttempt = 0; notConfirmed && loginAttempt < 3; loginAttempt++) {
+            cout << "Please enter your customer number: ";
+            cin >> compare.userID; 
+            cout << "Please enter you password: ";
+            cin >> compare.password;
+            if (loadLogin("data/login_data.csv", compare.userID) && compare.password == login.password) {
+                notConfirmed = false;
+            }
+            else {
+                cout << "Try again: ";
+            }
+        }
+    }
+
+ int main() {
+     // test.registerNewUser("testID");
+     //test.printFromCSV("data/login_data.csv", "101");
+     //loadLogin("data/login_data.csv", "0");
+     checkLogin();
+     return 0;
+ }

@@ -1,45 +1,56 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
+
+
+#include "header.h"
+
 using std::cout;
 using std::cin;
 using std::string; 
 
+
+
 struct claim {
-    int id,
-        policyType,
-        policyID,
-        payout;
+    string ID;
+    string policyID;
+    string claimStatus;
         //vehicle claimedVehicle;  Will call vehicle.h file
    
 
     claim(){
-        id = payout = policyType = policyID = 0;
+        claimStatus = ID = policyID = "null";
+    }
+    
+    string fetchClaimNum() { 
+        int ID = readTxt("data/claims_id_counter.txt"); 
+        writeTxt("data/claims_id_counter.txt", ID);
+        string stringID = std::to_string(ID);
+        return stringID;
     }
 
-    int getPayOut(){
-        int excess;
-            if (policyType == 1){
-                excess = 300;
-            }
-            if (policyType == 2){
-                excess = 100;
-            }
-            if (policyType == 3){
-                excess = 0;
-            }
-           // payout = claimedVehicle.insuredValue - excess; Needs vehicle.h file
-            
-            return payout;
+    void makeClaim() {
+        ID = fetchClaimNum();
+        string policyIDinput;
+        std::vector<std::string> customerPolicy;
+        claimStatus = "Pending approval";
+        cout << "\nPlease enter your Policy ID number to make a claim: ";
+        getline(cin, policyIDinput);
+        customerPolicy = CSVtoVector("data/policy_data.csv", policyIDinput);
+        cout << "Your claim number is: " << ID << "\n";
+        cout << "Your Policy Type is: " << customerPolicy[1] << "\n";
+        cout << "Your excess will be: $" << customerPolicy[2] << "\n" ;
+        cout << "Your insured vehicle is: \n";
+        cout << "LOGIC TO PRINT VEHICLE INFO from vehicle csv \n";
+        cout << "Your claim status is: " << claimStatus << "\n\n";
+
+        string toCSV = ID + "," + customerPolicy[0] + "," + customerPolicy[2] + "," + claimStatus;  //Vechile Registration and possible ins value to be added. 
+        cout << toCSV;
+        writeCsv("data/claim_data.csv", toCSV);
     }
-
-
-
-    // void makeClaim() {
-    //     // claimID to be added when file manager.cpp complete
-    //     cout << "Please enter the registration of the insured vehicle: ";
-    //     getline(cin, vehicleRegistration);
-    //     // Logic to be added. Check registration is valid, return not on policy if not.
-    //     cout << "If your claim is approved. Your payout amount will be: ";
-    //     //Add payout amount. It will be Ins Value - excess
-    //}
 };
+
+//int main(){
+//    claim test;
+//    test.makeClaim();
+//}

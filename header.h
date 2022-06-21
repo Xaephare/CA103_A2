@@ -25,7 +25,7 @@ void registerNewUser(std::string newUserID);
 void printDetails();
 bool validPassword(std::string pass);
 void printFromCSV(std::string filename, std::string ID);
-void loadCSV(std::string filename, std::string ID);
+bool loadLogin(std::string filename, std::string ID);
 
 //policy
 struct Policy {

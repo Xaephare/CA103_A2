@@ -80,33 +80,18 @@ std::vector<std::string> CSVtoVector(string filename, string uniqueID){
         getline(sstr, substr, ',');
         vectorData.push_back(substr);
     }
-    // FOLLOWING TWO LINES PRINT VECTORS AS TEST 
-    ///*
+
     for (std::size_t i = 0; i < vectorData.size(); i++)
-        std::cout << vectorData[i] << std::endl; 
-    //*/
+        //DEBUG PRINT
+        std::cout << vectorData[i] << std::endl;
+
     return vectorData;
 }
 
-// int main(){
-//     // --==  Test for reading txt files ==--
-//     //int test2 = readTxt("data/","vehicle_id_counter.txt");
-//     //cout << "\n" << "test read = " << test2 << "\n";
+ //int main() {
 
-//     // --== Test for writing csv ==--
-//     // string testCSV1 = "customerID1, username1, password1";
-//     // string testCSV2 = "customerID2, username2, password2";
-//     // writeCsv("data/login_data.csv", testCSV1);
-//     // writeCsv("data/login_data.csv", testCSV2);
-
-
-//     // --==Test for readCSV ==--
-//     string testCSV3 = "101";
-//     string testCSV4 = "103";
-//     cout << readCsv("data/login_data.csv", testCSV4) << "\n";
-//     string test = "111,ddd,fff";
-//     CSVtoVector("data/login_data.csv", testCSV4);
-//     // cout << test.find_first_of(","); 
-//     // cout << getID(test) << "\n";
-//     return 0;
-// }
+ //    CSVtoVector("data/login_data.csv", "4");
+ //    // cout << test.find_first_of(","); 
+ //    // cout << getID(test) << "\n";
+ //    return 0;
+ //}

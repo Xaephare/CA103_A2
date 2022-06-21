@@ -199,16 +199,16 @@ struct Customer customer;
  }
 
 
-int main() {
-	//newCustomer();
-    //newPolicy(customer.ID);
-
-    string customerID = "0";
-    cout << "customer ID to be edited? \n";
-    cin >> customerID;
-
-    bool testingCompleted = updateCsv("data/customer_data.csv", customerID);
-	cout << "\nTesting completed: " << testingCompleted;
-
-	return 0;
-}
+//int main() {
+//	//newCustomer();
+//    //newPolicy(customer.ID);
+//
+//    string customerID = "0";
+//    cout << "customer ID to be edited? \n";
+//    cin >> customerID;
+//
+//    bool testingCompleted = updateCsv("data/customer_data.csv", customerID);
+//	cout << "\nTesting completed: " << testingCompleted;
+//
+//	return 0;
+//}
