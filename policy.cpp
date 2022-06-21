@@ -2,8 +2,10 @@
 #include <vector>
 #include <ctime>
 
-//#include "filemanager.h"
+
 #include "header.h"
+//#include "TEST_vehicle.h" - Emma testing.
+//#include "TEST_filemanager.h"
 
 using std::cout;
 using std::cin;
@@ -73,14 +75,18 @@ struct Policy policy;
             cin >> policy.policyType;
         } 
         cout << "\nYou have selected " + getPolicyType() << "\n";
+        string vehicleID = fetchVehicleIDNum();
+        getVehicleInfo(vehicleID);  // Calls from vehicle cpp
 
-        string toCSV = policy.policyID + "," + getPolicyType() + "," + policy.policyExcess;
+        string toCSV = policy.policyID + "," + getPolicyType() + "," +  vehicleID + "," + policy.policyExcess;
         ::writeCsv("data/policy_data.csv", toCSV);  
     }
 
-// int main(){
-//     policy test;
-//     test.newPolicy();
-//     test.printPolicy();
-//     return 0;
-// }
+
+
+int main(){
+    policy test;
+    newPolicy("4500");
+    printPolicy();
+    return 0;
+}

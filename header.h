@@ -27,12 +27,35 @@ bool validPassword(std::string pass);
 void printFromCSV(std::string filename, std::string ID);
 void loadCSV(std::string filename, std::string ID);
 
+//vehicle
+struct Vehicle {
+    int insuredValue;
+    std::string ID,
+    registration,
+        make,
+        model,
+        colour;
+
+
+    Vehicle() {
+        ID = insuredValue = 0;
+        registration = make = model = colour = "unassigned";
+    }
+    //int year;
+    //int doors{};
+    //string transmission{}
+};
+
 //policy
 struct Policy {
     std::string policyID; // Same as customer ID, as each customer can only have one policy.
+    std::string policyExcess;
+    Vehicle insuredVehicle;
     int policyType;
+
     //vector<insVehicle>; Vehicles to be pulled from vehicle cpp
     Policy() {
+        policyExcess = "null"; //Will be zero for PREMIUM policy holders
         policyType = 0;
         policyID = "null";
     }
@@ -58,29 +81,8 @@ std::string fetchClientNum();
 void newCustomer();
 void createNewPolicy();
 
-//vehicle
-struct Vehicle {
-    int id,
-        insuredValue;
-    std::string registration,
-        make,
-        model,
-        colour;
-
-
-    Vehicle() {
-        id = insuredValue = 0;
-        registration = make = model = colour = "unassigned";
-    }
-    //int year;
-    //int doors{};
-    //string transmission{}
-};
 void printVehicle();
 void getVehicleInfo();
 
 //menus
 void mainMenu();
-
-//admin
-//uses customer struct

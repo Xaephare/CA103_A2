@@ -67,7 +67,7 @@ string readCSV(string filename, string uniqueID){  // Searches CSV for ID to ret
         file.close();
     }
     return data;
-    cout << data;
+    cout << data; //debug check
 }
 
 // string updateCSV(string filename, string uniqueID){
@@ -95,15 +95,15 @@ std::vector<std::string> CSVtoVector(string filename, string uniqueID){
 //int main(){
     //updateCSV("data/customer_data.csv", "2006");
 
-    // --==  Test for reading txt files ==--
-    //int test2 = readTxt("data/","vehicle_id_counter.txt");
-    //cout << "\n" << "test read = " << test2 << "\n";
+//     // --==  Test for reading txt files ==--
+//     //int test2 = readTxt("data/","vehicle_id_counter.txt");
+//     //cout << "\n" << "test read = " << test2 << "\n";
 
-    // --== Test for writing csv ==--
-    // string testCSV1 = "customerID1, username1, password1";
-    // string testCSV2 = "customerID2, username2, password2";
-    // writeCsv("data/login_data.csv", testCSV1);
-    // writeCsv("data/login_data.csv", testCSV2);
+//     // --== Test for writing csv ==--
+//     // string testCSV1 = "customerID1, username1, password1";
+//     // string testCSV2 = "customerID2, username2, password2";
+//     // writeCsv("data/login_data.csv", testCSV1);
+//     // writeCsv("data/login_data.csv", testCSV2);
 
 
     // --==Test for readCSV ==--
