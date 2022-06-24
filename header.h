@@ -25,37 +25,15 @@ void registerNewUser(std::string newUserID);
 void printDetails();
 bool validPassword(std::string pass);
 void printFromCSV(std::string filename, std::string ID);
-void loadCSV(std::string filename, std::string ID);
-
-//vehicle
-struct Vehicle {
-    int insuredValue;
-    std::string ID,
-    registration,
-        make,
-        model,
-        colour;
-
-
-    Vehicle() {
-        ID = insuredValue = 0;
-        registration = make = model = colour = "unassigned";
-    }
-    //int year;
-    //int doors{};
-    //string transmission{}
-};
+bool loadLogin(std::string filename, std::string ID);
+void checkLogin();
 
 //policy
 struct Policy {
     std::string policyID; // Same as customer ID, as each customer can only have one policy.
-    std::string policyExcess;
-    Vehicle insuredVehicle;
     int policyType;
-
     //vector<insVehicle>; Vehicles to be pulled from vehicle cpp
     Policy() {
-        policyExcess = "null"; //Will be zero for PREMIUM policy holders
         policyType = 0;
         policyID = "null";
     }
@@ -80,9 +58,47 @@ struct Customer {
 std::string fetchClientNum();
 void newCustomer();
 void createNewPolicy();
+bool updateCsv();
 
+//vehicle
+struct Vehicle {
+    int id,
+        insuredValue;
+    std::string registration,
+        make,
+        model,
+        colour;
+
+
+    Vehicle() {
+        id = insuredValue = 0;
+        registration = make = model = colour = "unassigned";
+    }
+    //int year;
+    //int doors{};
+    //string transmission{}
+};
 void printVehicle();
 void getVehicleInfo();
 
 //menus
-void mainMenu();
+void openingMenu();
+void customerOpeningMeu();
+void adminOpeningMeu();
+
+//admin
+struct Admin {
+    Login userLoginInfo;
+    std::string ID; //Any client number of 0 is a void client or maybe an admin?
+    std::string firstName,
+        lastName,
+        phone;
+    Policy customerPolicyInfo;
+
+    Admin() {
+        ID = firstName = lastName = "null";
+    }
+};
+std::string fetchAdminNum();
+void newAdmin();
+loadAdminCSV();
