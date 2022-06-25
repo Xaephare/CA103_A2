@@ -123,13 +123,13 @@ struct Login login;
         }
     }
 
-    bool checkLogin() {  //change to bool 
+    Login checkLogin() {  //change to bool 
         
         bool notConfirmed = true;
         Login compare;
 
         for (int loginAttempt = 0; notConfirmed && loginAttempt < 3; loginAttempt++) {
-            cout << "Please enter your customer number: ";
+            cout << "Please enter your user ID number: ";
             cin >> compare.userID; 
             cout << "Please enter you password: ";
             cin >> compare.password;
@@ -140,10 +140,7 @@ struct Login login;
                 cout << "Try again: ";
             }
         }
-               if (!notConfirmed)
-            return true;
-        else
-            return false;
+            return login;
     }
 
  //int main() {

@@ -77,6 +77,8 @@ std::string fetchClientNum();
 void newCustomer();
 void createNewPolicy();
 bool updateCsv();
+void customerMenu();
+bool loadCustomer(std::string filename, std::string ID);
 
 //file manager
 int writeTxt(std::string filename, int assignedID);
@@ -93,7 +95,7 @@ void printDetails();
 bool validPassword(std::string pass);
 void printFromCSV(std::string filename, std::string ID);
 bool loadLogin(std::string filename, std::string ID);
-bool checkLogin();
+Login checkLogin();
 
 //menus
 void openingMenu();

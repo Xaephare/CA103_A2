@@ -9,17 +9,21 @@ using std::string;
 // Customer Menu
 void customerOpeningMenu(){
 	int menuSelection;
+	Login sessionID;
 	cout << "\n------------------------------------------------";
-	cout << "\n				CUSTOMER MENU";
+	cout << "\n			CUSTOMER MENU";
 	cout << "\n------------------------------------------------";
-	cout << "\n\n	1. I am already have an account.";
+	cout << "\n\n		1. I already have an account.";
 	cout << "\n		2. I would like to create an account.";
 	cout << "\n		3. Return to Main Menu";
 	cout << "\n		4. Exit.\n";
 	cin >> menuSelection;
-		switch (menuSelection) {
+	switch (menuSelection) {
 	case 1: 
-		checkLogin(); // Logic so customerMenu opens if checkLogin successful.
+			sessionID = checkLogin();
+			loadCustomer("data/customer_data.csv", sessionID.userID);
+			customerMenu();
+		// Logic so customerMenu opens if checkLogin successful.
 		// customerMenu(bool LoginSuccesful)
 		break;
 	case 2:
@@ -39,9 +43,9 @@ void customerOpeningMenu(){
 void adminOpeningMenu(){
 	int menuSelection;
 	cout << "\n------------------------------------------------";
-	cout << "\n				ADMIN MENU";
+	cout << "\n			ADMIN MENU";
 	cout << "\n------------------------------------------------";
-	cout << "\n\n	1. I am already have an account.";
+	cout << "\n\n		1. I already have an account.";
 	cout << "\n		2. I would like to create an account.";
 	cout << "\n		3. Return to Main Menu";
 	cout << "\n		4. Exit.\n";
@@ -67,10 +71,10 @@ void adminOpeningMenu(){
 void openingMenu() {
 	int menuSelection;
 	cout << "\n------------------------------------------------";
-	cout << "\n		Welcome to EPIC Vehicle Insurance";
+	cout << "\n	Welcome to EPIC Vehicle Insurance";
 	cout << "\n------------------------------------------------";
-	cout << "\n 	Please select from the User options below. ";
-	cout << "\n\n	1. I am a Customer.";
+	cout << "\n	Please select from the User options below. ";
+	cout << "\n\n		1. I am a Customer.";
 	cout << "\n		2. I am an Administrator.";
 	cout << "\n		3. Exit.\n";
 	cin >> menuSelection;

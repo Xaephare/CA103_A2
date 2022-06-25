@@ -41,6 +41,7 @@ struct Customer customer;
     void newCustomer() {
         customer.ID = fetchClientNum();
         cout << "Your Customer ID number is: " << customer.ID << "\n";
+        cout << "We advise you to write this down as you will need it to log in.\n";
         cout << "First Name: ";
         cin >> customer.firstName;
         cout << "Last name: ";
@@ -66,6 +67,26 @@ struct Customer customer;
 
     }
 
+    bool loadCustomer(string filename, string ID) {
+        std::vector<std::string> dataVector = CSVtoVector(filename, ID);
+
+        if (dataVector.size() == 1) {
+            customer.ID = dataVector[0];
+        }
+        else {
+            customer.ID = dataVector[0];
+            customer.firstName = dataVector[1];
+            customer.lastName = dataVector[2];
+            customer.phone = dataVector[3];
+        }
+
+        if (dataVector[0] == "none") {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
     bool updateCsv(string filename, string uniqueID) {
 
@@ -213,6 +234,7 @@ struct Customer customer;
 
 
     void customerMenu(){
+
         int menuSelection = 0;
         cout << "\nWelcome " << customer.firstName;
         cout << "\nPlease select from the following options: ";

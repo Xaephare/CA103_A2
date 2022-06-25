@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="admin.cpp" />
+    <ClCompile Include="claim.cpp" />
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="filemanager.cpp" />
     <ClCompile Include="login.cpp" />
