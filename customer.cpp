@@ -213,7 +213,7 @@ struct Customer customer;
 
 
     void customerMenu(){
-        int menuSelection;
+        int menuSelection = 0;
         cout << "\nWelcome " << customer.firstName;
         cout << "\nPlease select from the following options: ";
         cout << "\n1. View your customer details.";
@@ -222,6 +222,8 @@ struct Customer customer;
         cout << "\n4. View your vehicle.";
         cout << "\n5. View your claims.";
         cout << "\n6. Log Out.\n";
+        cin >> menuSelection;
+
         switch (menuSelection) {
 	        case 1: 
 		    //Customer print statement to be print printCustomer()

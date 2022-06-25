@@ -70,7 +70,7 @@ struct Login login;
     }
 
     // Password min 6 characters, with at least 1 number
-    bool validPassword(string pass){
+    bool validPassword(string pass) {
         bool notValid = true;
         while (notValid) {
             if (pass.size() < 6){
@@ -146,10 +146,10 @@ struct Login login;
             return false;
     }
 
- int main() {
-     // test.registerNewUser("testID");
-     //test.printFromCSV("data/login_data.csv", "101");
-     //loadLogin("data/login_data.csv", "0");
-     checkLogin();
-     return 0;
- }
+ //int main() {
+ //    // test.registerNewUser("testID");
+ //    //test.printFromCSV("data/login_data.csv", "101");
+ //    //loadLogin("data/login_data.csv", "0");
+ //    checkLogin();
+ //    return 0;
+ //}

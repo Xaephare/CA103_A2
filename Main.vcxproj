@@ -136,24 +136,23 @@
     <None Include="data\vehicle_data.csv" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\admin_id_counter.txt" />
-    <Text Include="data\claims_id_counter.txt" />
-    <Text Include="data\customer_id_counter.txt" />
-    <Text Include="data\policy_id_counter.txt" />
-    <Text Include="data\vehicle_id_counter.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="header.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="admin.cpp" />
-    <ClCompile Include="claim.cpp" />
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="filemanager.cpp" />
     <ClCompile Include="login.cpp" />
     <ClCompile Include="mainmenu.cpp" />
     <ClCompile Include="policy.cpp" />
     <ClCompile Include="vehicle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\admin_id_counter.txt" />
+    <Text Include="data\claims_id_counter.txt" />
+    <Text Include="data\customer_id_counter.txt" />
+    <Text Include="data\policy_id_counter.txt" />
+    <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

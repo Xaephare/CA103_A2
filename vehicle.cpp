@@ -50,7 +50,7 @@ void printVehicle() {
 
 }
 
-void getVehicleInfo(string ID) {
+Vehicle getVehicleInfo(string ID) {
     vehicle.ID = fetchVehicleIDNum();
     string insuredValueStr;
     cout << "Please input vehicle information \n";
@@ -74,6 +74,8 @@ void getVehicleInfo(string ID) {
     string toCSV = vehicle.ID + "," + vehicle.registration + "," + vehicle.make + "," + vehicle.model + "," + vehicle.colour + "," + insuredValueStr;
     ::writeCsv("data/vehicle_data.csv", toCSV);
     cout << toCSV;
+
+    return vehicle;
 }
 
 
