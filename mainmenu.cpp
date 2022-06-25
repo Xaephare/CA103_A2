@@ -88,9 +88,9 @@ void openingMenu() {
 	}
 }
 
-//int main() {
-//
-//	mainMenu();
-//
-//	return 0;
-//}
+int main() {
+
+	openingMenu();
+
+	return 0;
+}

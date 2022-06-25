@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
-
-
+#include <string>
 #include "header.h"
 //#include "TEST_filemanager.h"
 
@@ -50,7 +49,7 @@ struct claim {
     }
 };
 
-int main(){
-    claim test;
-    test.makeClaim();
-}
+//int main(){
+//    claim test;
+//    test.makeClaim();
+//}

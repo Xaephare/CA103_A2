@@ -84,9 +84,9 @@ struct Policy policy;
 
 
 
-int main(){
-    policy test;
-    newPolicy("4500");
-    printPolicy();
-    return 0;
-}
+//int main(){
+//    policy test;
+//    newPolicy("4500");
+//    printPolicy();
+//    return 0;
+//}
