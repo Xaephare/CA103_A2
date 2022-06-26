@@ -13,7 +13,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-struct Admin admin;
+struct Customer admin;
 //struct customer {
 //    login userLoginInfo;
 //	string ID; 
@@ -48,18 +48,10 @@ struct Admin admin;
 
     }
 
-    void loadAdminCSV(string filename, string ID){
-        string data = "ID not found\n";
-        std::vector<std::string> dataVector = CSVtoVector(filename, ID);
-        admin.ID = dataVector[0];
-        admin.firstName = dataVector[1];
-        admin.lastName = dataVector[2];
-    }
-
-// int main() {
-//     admin test;
-// 	test.newAdmin();
-// 	cout << "\nTesting completed successfully";
-
-// 	return 0;
-// }
+//int main() {
+//    customer test;
+//	test.newAdmin();
+//	cout << "\nTesting completed successfully";
+//
+//	return 0;
+//}

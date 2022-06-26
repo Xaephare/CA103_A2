@@ -13,6 +13,40 @@ struct Login {
         userID = email = password = "null";
     }
 };
+struct Policy {
+    std::string policyID; // Same as customer ID, as each customer can only have one policy.
+    int policyType;
+    std::string policyExcess;
+    //vector<insVehicle>; Vehicles to be pulled from vehicle cpp
+    Policy() {
+        policyType = 0;
+        policyID = "null";
+        policyExcess = '0';
+    }
+};
+struct Admin {
+    Login userLoginInfo;
+    std::string ID; //Any client number of 0 is a void client or maybe an admin?
+    std::string firstName,
+        lastName,
+        phone;
+
+    Admin() {
+        ID = firstName = lastName = "null";
+    }
+};
+struct Customer {
+    Login userLoginInfo;
+    std::string ID; //Any client number of 0 is a void client or maybe an admin?
+    std::string firstName,
+        lastName,
+        phone;
+    Policy customerPolicyInfo;
+
+    Customer() {
+        ID = firstName = lastName = phone = "null";
+    }
+};
 struct Vehicle {
     std::string ID;
     int insuredValue;
@@ -31,38 +65,6 @@ struct Vehicle {
     //int doors{};
     //string transmission{}
 };
-struct Policy {
-    Vehicle insuredVehicle;
-    std::string policyID; // Same as customer ID, as each customer can only have one policy.
-    std::string policyExcess;
-    std::string policyType;
-    //vector<insVehicle>; Vehicles to be pulled from vehicle cpp
-    Policy() {
-        policyType = policyExcess = policyID = "null";
-    }
-};
-
-struct Admin {
-    Login userLoginInfo;
-    std::string ID; //Any client number of 0 is a void client or maybe an admin?
-    std::string firstName,
-        lastName,
-        phone;
-
-//customer
-struct Customer {
-    Login userLoginInfo;
-    std::string ID; //Any client number of 0 is a void client or maybe an admin?
-    std::string firstName,
-        lastName,
-        phone;
-    Policy customerPolicyInfo;
-
-    Customer() {
-        ID = firstName = lastName = phone = "null";
-    }
-};
-
 
 
 //admin
@@ -75,8 +77,8 @@ std::string fetchClientNum();
 void newCustomer();
 void createNewPolicy();
 bool updateCsv();
-void customerMenu(Login session);
-Customer loadCustomer(std::string filename, std::string ID);
+void customerMenu();
+bool loadCustomer(std::string filename, std::string ID);
 
 //file manager
 int writeTxt(std::string filename, int assignedID);
@@ -101,13 +103,11 @@ void customerOpeningMenu();
 void adminOpeningMenu();
 
 //policy
-std::string getPolicyType(int policyChoice);
+std::string getPolicyType();
 void printPolicy();
 void newPolicy(std::string customerID);
-Policy loadPolicy(std::string filename, std::string ID);
 
 //vehicle
 void printVehicle();
 Vehicle getVehicleInfo(std::string ID);
 std::string fetchVehicleIDNum();
-Vehicle loadVehicle(std::string filename, std::string ID);

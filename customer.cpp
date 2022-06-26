@@ -49,10 +49,10 @@ struct Customer customer;
         cout << "Phone number: ";
         cin >> customer.phone;
         registerNewUser(customer.ID);
-        newPolicy(customer.ID);
         
         string toCSV = customer.ID + "," + customer.firstName + "," + customer.lastName + "," + customer.phone;
         writeCsv("data/customer_data.csv", toCSV);
+
     }
 
     void printCustomer(){
@@ -60,14 +60,14 @@ struct Customer customer;
         cout << "   CUSTOMER INFORMATION FOR: " << customer.ID << "\n";
         cout << "   ---------------------------------- \n";
         cout << "   Name:   " << customer.firstName << " " << customer.lastName << "\n";
-        cout << "   Email:  " << customer.userLoginInfo.email << "\n"; //needs to pull from login 
+        cout << "   Email:  " << "\n"; //needs to pull from login 
         cout << "   Phone:  " << customer.phone << "\n";
                     /// Do we want to add policy, vehicle rego and number of claims?
         cout << "   ---------------------------------- \n";
 
     }
 
-    Customer loadCustomer(string filename, string ID) {
+    bool loadCustomer(string filename, string ID) {
         std::vector<std::string> dataVector = CSVtoVector(filename, ID);
 
         if (dataVector.size() == 1) {
@@ -80,7 +80,12 @@ struct Customer customer;
             customer.phone = dataVector[3];
         }
 
-        return customer;
+        if (dataVector[0] == "none") {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     bool updateCsv(string filename, string uniqueID) {
@@ -135,7 +140,7 @@ struct Customer customer;
                 row.clear();
 
                 //gets line and creates new stringstream variable
-                getline(fin, line, ' ');
+                getline(fin, line);
                 std::stringstream sstr(line);
 
                 //pushes each word from the current line into the vector
@@ -228,9 +233,8 @@ struct Customer customer;
  }
 
 
-    void customerMenu(Login session){
-        Policy vehicleID;
-        customer.userLoginInfo.email = session.email;
+    void customerMenu(){
+
         int menuSelection = 0;
         cout << "\nWelcome " << customer.firstName;
         cout << "\nPlease select from the following options: ";
@@ -244,34 +248,25 @@ struct Customer customer;
 
         switch (menuSelection) {
 	        case 1: 
-		        //Customer print statement to be print printCustomer()
-
-                printCustomer();
-		        break;
+		    //Customer print statement to be print printCustomer()
+		    break;
 	        case 2:
-                updateCsv("data/customer_data.csv", customer.ID);
-		        //Update customer info 
-		        break;
-	        case 3:
-                loadPolicy("data/policy_data.csv", customer.ID);
-                printPolicy();
-		        //Print function from policy.cpp
-		        break;
-	        case 4:
-                vehicleID = loadPolicy("data/policy_data.csv", customer.ID);
-                loadVehicle("data/vehicle_data.csv", vehicleID.insuredVehicle.ID);
-                printVehicle();
-                //Print function from vehicle.cpp
-                break;
+            updateCsv("data/customer_data.csv", customer.ID);
+		    //Update customer info 
+		    break;
+	        case 3: 
+		    //Print function from policy.cpp
+		    break;
+	        case 4: 
+            //Print function from vehicle.cpp
+            break;
             case 5: 
-                //Print function from claim.cpp - will also need logic to say if a claim exists or not
-                break;
+            //Print function from claim.cpp - will also need logic to say if a claim exists or not
+            break;
             case 6: 
-                openingMenu();
-                break;
-            default:
-                cout << "Please pick from one of the displayed options by pressing their respective number.";
-                break;
+            openingMenu();
+            break;
+            default: cout << "Please pick from one of the displayed options by pressing their respective number.";
             }
     }
 

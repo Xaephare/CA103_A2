@@ -12,7 +12,6 @@ using std::string;
 using std::ios;
 using std::fstream;
 
-
 int writeTxt(string filename, int assignedID){  // To be called after ID has been assigned, will increment existing ID by one so it's ready to be assigned the next time readTxt is called
     int newID = assignedID + 1;
     fstream newfile;
@@ -68,7 +67,12 @@ string readCSV(string filename, string uniqueID){  // Searches CSV for ID to ret
         file.close();
     }
     return data;
+    cout << data; //debug check
 }
+
+// string updateCSV(string filename, string uniqueID){
+
+// }
 
 std::vector<std::string> CSVtoVector(string filename, string uniqueID){
     string data = readCSV(filename, uniqueID);
@@ -88,10 +92,29 @@ std::vector<std::string> CSVtoVector(string filename, string uniqueID){
     return vectorData;
 }
 
- //int main() {
+//int main(){
+    //updateCSV("data/customer_data.csv", "2006");
 
- //    CSVtoVector("data/login_data.csv", "4");
- //    // cout << test.find_first_of(","); 
- //    // cout << getID(test) << "\n";
- //    return 0;
- //}
+//     // --==  Test for reading txt files ==--
+//     //int test2 = readTxt("data/","vehicle_id_counter.txt");
+//     //cout << "\n" << "test read = " << test2 << "\n";
+
+//     // --== Test for writing csv ==--
+//     // string testCSV1 = "customerID1, username1, password1";
+//     // string testCSV2 = "customerID2, username2, password2";
+//     // writeCsv("data/login_data.csv", testCSV1);
+//     // writeCsv("data/login_data.csv", testCSV2);
+
+
+    // --==Test for readCSV ==--
+    // string testCSV3 = "101";
+    // string testCSV4 = "103";
+    // std::vector<std::string> info;
+    // cout << readCSV("data/customer_data.csv", "2006") << "\n";
+    // info = CSVtoVector("data/customer_data.csv", "2006");
+    // string test = "111,ddd,fff";
+    // CSVtoVector("data/login_data.csv", testCSV4);
+    // cout << test.find_first_of(","); 
+    // cout << getID(test) << "\n";
+    //    return 0;
+// }

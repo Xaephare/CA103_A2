@@ -15,21 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\vehicleDb.csv" />
     <None Include="data\admin_data.csv" />
     <None Include="data\claim_data.csv" />
     <None Include="data\customer_data.csv" />
     <None Include="data\login_data.csv" />
     <None Include="data\policy_data.csv" />
     <None Include="data\vehicle_data.csv" />
-    <None Include="data\vehicleDb.csv" />
-    <None Include="data\updated_file_temp_name.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="data\admin_id_counter.txt" />
-    <Text Include="data\claims_id_counter.txt" />
-    <Text Include="data\customer_id_counter.txt" />
-    <Text Include="data\policy_id_counter.txt" />
-    <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
@@ -55,10 +47,10 @@
     <ClCompile Include="vehicle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="claim.cpp">
+    <ClCompile Include="admin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="admin.cpp">
+    <ClCompile Include="claim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,6 +58,7 @@
     <Text Include="data\admin_id_counter.txt" />
     <Text Include="data\claims_id_counter.txt" />
     <Text Include="data\customer_id_counter.txt" />
+    <Text Include="data\policy_id_counter.txt" />
     <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
 </Project>

@@ -132,16 +132,8 @@
     <None Include="data\customer_data.csv" />
     <None Include="data\login_data.csv" />
     <None Include="data\policy_data.csv" />
-    <None Include="data\updated_file_temp_name.csv" />
     <None Include="data\vehicleDb.csv" />
     <None Include="data\vehicle_data.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="data\admin_id_counter.txt" />
-    <Text Include="data\claims_id_counter.txt" />
-    <Text Include="data\customer_id_counter.txt" />
-    <Text Include="data\policy_id_counter.txt" />
-    <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h" />
@@ -160,6 +152,7 @@
     <Text Include="data\admin_id_counter.txt" />
     <Text Include="data\claims_id_counter.txt" />
     <Text Include="data\customer_id_counter.txt" />
+    <Text Include="data\policy_id_counter.txt" />
     <Text Include="data\vehicle_id_counter.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

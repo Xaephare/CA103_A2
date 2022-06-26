@@ -1,12 +1,10 @@
 
 #include <iostream>
-#include <vector>
 using std::cout;
 using std::cin;
 using std::string;
  
  #include "header.h"
-
 
 // Customer Menu
 void customerOpeningMenu(){
@@ -21,10 +19,10 @@ void customerOpeningMenu(){
 	cout << "\n		4. Exit.\n";
 	cin >> menuSelection;
 	switch (menuSelection) {
-	case 1:
-		sessionID = checkLogin();
-		currentCust = loadCustomer("data/customer_data.csv", sessionID.userID);
-		customerMenu(sessionID);
+	case 1: 
+			sessionID = checkLogin();
+			loadCustomer("data/customer_data.csv", sessionID.userID);
+			customerMenu();
 		// Logic so customerMenu opens if checkLogin successful.
 		// customerMenu(bool LoginSuccesful)
 		break;
@@ -54,10 +52,11 @@ void adminOpeningMenu(){
 	cin >> menuSelection;
 		switch (menuSelection) {
 	case 1: 
-		// checkLogin(); 
+		checkLogin(); // Logic so adminMenu opens if checkLogin successful.
+		// adminMenu(bool LoginSuccesful)
 		break;
 	case 2:
-		newCustomer();  //called from customer.cpp and login.cpp
+		newAdmin();  //called from customer.cpp and login.cpp
 		break;
 	case 3: 
 		openingMenu();
