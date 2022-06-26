@@ -148,7 +148,7 @@ struct Customer customer;
                 //    count = 2;
                 //    break;
                 //}
-                    
+
 
                 fileID = row[0];
                 int rowSize = row.size();
@@ -170,20 +170,20 @@ struct Customer customer;
                         for (int i = 0; i < rowSize - 1; i++) {
 
                             // write existing data into the new file
-                                fout << row[i] << ",";
-                            }
-                            fout << row[rowSize - 1] << "\n";
+                            fout << row[i] << ",";
+                        }
+                        fout << row[rowSize - 1] << "\n";
                     }
-                    
-                }
-            if (fin.eof()) {
-                for (int i = 0; i < rowSize; i++) {
 
-                    // write last line to new file without a newline
-                    fout << row[i] << ",";
                 }
-                 break;
-            }
+                if (fin.eof()) {
+                    for (int i = 0; i < rowSize - 1; i++) {
+                        // write last line to new file without a newline
+                        fout << row[i] << ",";
+                    }
+                    fout << row[rowSize - 1];
+                    break;
+                }
             }
             if (count == 0)
                 cout << "Data not found, nothing was changed.\n";
@@ -201,32 +201,8 @@ struct Customer customer;
 
             return true;
         }
-
-
-
-
-        //else if (filename == "vehicle_data.csv") {
-
-        //}
-        //else if (filename == "login_data.csv") {
-        //    cout << "\n1 - Email"
-        //        "\n2 - Password";
-        //    cin >> option;
-        //}
-        //else if (filename == "policy_data.csv") {
-        //    cout << "What should replace the current policy?";
-        //}
-        //else if (filename == "vehicle_data.csv") {
-        //    
-        //}
-        //else {
-        //    cout << "ERROR - filename incorrect";
-        //    return false;
-        //}
-
         return true;
- }
-
+    }
 
     void customerMenu(Login session){
         Policy vehicleID;
