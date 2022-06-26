@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <string>
+#include <sstream>
+
+
 #include "header.h"
-//#include "TEST_filemanager.h"
 
 using std::cout;
 using std::cin;
@@ -38,7 +39,7 @@ struct claim {
         customerPolicy = CSVtoVector("data/policy_data.csv", policyIDinput);
         cout << "Your claim number is: " << ID << "\n";
         cout << "Your Policy Type is: " << customerPolicy[1] << "\n";
-        cout << "Your excess will be: " << customerPolicy[2] << "\n" ;
+        cout << "Your excess will be: $" << customerPolicy[2] << "\n" ;
         cout << "Your insured vehicle is: \n";
         cout << "LOGIC TO PRINT VEHICLE INFO from vehicle csv \n";
         cout << "Your claim status is: " << claimStatus << "\n\n";

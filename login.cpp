@@ -70,7 +70,7 @@ struct Login login;
     }
 
     // Password min 6 characters, with at least 1 number
-    bool validPassword(string pass) {
+    bool validPassword(string pass){
         bool notValid = true;
         while (notValid) {
             if (pass.size() < 6){
@@ -102,7 +102,7 @@ struct Login login;
         cout << data << "\n";
     }
 
-    // Imports login data from CSVVector to log in
+    
     bool loadLogin(string filename, string ID) {
         std::vector<std::string> dataVector = CSVtoVector(filename, ID);
 
@@ -123,13 +123,13 @@ struct Login login;
         }
     }
 
-    Login checkLogin() {  //change to bool 
+    void checkLogin() {
         
         bool notConfirmed = true;
         Login compare;
 
         for (int loginAttempt = 0; notConfirmed && loginAttempt < 3; loginAttempt++) {
-            cout << "Please enter your user ID number: ";
+            cout << "Please enter your customer number: ";
             cin >> compare.userID; 
             cout << "Please enter you password: ";
             cin >> compare.password;
@@ -140,13 +140,12 @@ struct Login login;
                 cout << "Try again: ";
             }
         }
-            return login;
     }
 
- //int main() {
- //    // test.registerNewUser("testID");
- //    //test.printFromCSV("data/login_data.csv", "101");
- //    //loadLogin("data/login_data.csv", "0");
- //    checkLogin();
- //    return 0;
- //}
+ int main() {
+     // test.registerNewUser("testID");
+     //test.printFromCSV("data/login_data.csv", "101");
+     //loadLogin("data/login_data.csv", "0");
+     checkLogin();
+     return 0;
+ }

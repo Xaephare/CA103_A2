@@ -51,8 +51,8 @@ void printVehicle() {
 }
 
 Vehicle getVehicleInfo(string ID) {
-    vehicle.ID = fetchVehicleIDNum();
     string insuredValueStr;
+    vehicle.ID = ID;
     cout << "Please input vehicle information \n";
     cout << "Enter registration: \n";
     cin >> vehicle.registration;
@@ -76,6 +76,30 @@ Vehicle getVehicleInfo(string ID) {
     cout << toCSV;
 
     return vehicle;
+
+}
+
+Vehicle loadVehicle(string filename, string ID) {
+    std::vector<std::string> dataVector = CSVtoVector(filename, ID);
+
+    if (dataVector.size() == 1) {
+        vehicle.ID = dataVector[0];
+    }
+    else {
+        vehicle.ID = dataVector[0];
+        vehicle.registration = dataVector[1];
+        vehicle.make = dataVector[2];
+        vehicle.model = dataVector[3];
+        vehicle.colour = dataVector[4];
+        vehicle.insuredValue = stoi(dataVector[5]);
+    }
+
+    if (dataVector[0] == "none") {
+        cout << "not found";
+    }
+    else {
+        return vehicle;
+    }
 }
 
 
