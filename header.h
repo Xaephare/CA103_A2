@@ -41,7 +41,6 @@ struct Policy {
         policyType = policyExcess = policyID = "null";
     }
 };
-
 struct Admin {
     Login userLoginInfo;
     std::string ID; //Any client number of 0 is a void client or maybe an admin?
@@ -49,7 +48,6 @@ struct Admin {
         lastName,
         phone;
 };
-//customer
 struct Customer {
     Login userLoginInfo;
     std::string ID; //Any client number of 0 is a void client or maybe an admin?
@@ -68,14 +66,16 @@ struct Customer {
 //admin
 std::string fetchAdminNum();
 void newAdmin();
-void loadAdmin(std::string filename, std::string ID);
+Admin loadAdmin(std::string filename, std::string ID);
+void adminMenu(Login session);
 
 //customer
 std::string fetchClientNum();
 void newCustomer();
 void createNewPolicy();
-bool updateCsv();
+bool updateCsv(std::string filename, std::string uniqueID);
 void customerMenu(Login session);
+void printCustomer();
 Customer loadCustomer(std::string filename, std::string ID);
 
 //file manager

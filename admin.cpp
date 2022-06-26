@@ -7,6 +7,7 @@
 
 #include "header.h"
 
+
 using std::string;
 using std::vector;
 using std::cin;
@@ -65,42 +66,36 @@ struct Admin admin;
     }
     
     
-    void customerMenu(Login session){
-        Policy vehicleID;
-        admin.userLoginInfo.email = session.email;
+    void adminMenu(){  // Login session
+        string viewCustomerID;
+        Customer selectedCustomer;
+       // admin.userLoginInfo.email = session.email;
         int menuSelection = 0;
         cout << "\nWelcome " << admin.firstName;
         cout << "\nPlease select from the following options: ";
         cout << "\n1. View a customer's details.";
         cout << "\n2. Update a customer's details.";
         cout << "\n3. View pending claims.";
+        cout << "\n4. Log out.";
         cin >> menuSelection;
         switch (menuSelection) {
 	        case 1: 
-		        //Customer print statement to be print printCustomer()
-
+		        cout << "Please enter the ID number of the customer you would like to view: ";
+                cin >> viewCustomerID;
+                selectedCustomer = loadCustomer("data/customer_data.csv", viewCustomerID);
                 printCustomer();
 		        break;
 	        case 2:
-                updateCsv("data/customer_data.csv", customer.ID);
-		        //Update customer info 
+            	cout << "Please enter the ID number of the customer you would like to view: ";
+                cin >> viewCustomerID;
+                updateCsv("data/customer_data.csv", viewCustomerID);
 		        break;
 	        case 3:
-                loadPolicy("data/policy_data.csv", customer.ID);
-                printPolicy();
+                cout << "CLAIMS LOGIC TO BE ADDED";
 		        //Print function from policy.cpp
 		        break;
 	        case 4:
-                vehicleID = loadPolicy("data/policy_data.csv", customer.ID);
-                loadVehicle("data/vehicle_data.csv", vehicleID.insuredVehicle.ID);
-                printVehicle();
-                //Print function from vehicle.cpp
-                break;
-            case 5: 
-                //Print function from claim.cpp - will also need logic to say if a claim exists or not
-                break;
-            case 6: 
-                openingMenu();
+                //openingMenu();
                 break;
             default:
                 cout << "Please pick from one of the displayed options by pressing their respective number.";
@@ -109,8 +104,7 @@ struct Admin admin;
     }
 
 // int main() {
-//     admin test;
-// 	test.newAdmin();
+//     adminMenu();
 // 	cout << "\nTesting completed successfully";
 
 // 	return 0;

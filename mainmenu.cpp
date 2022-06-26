@@ -5,6 +5,9 @@ using std::cout;
 using std::cin;
 using std::string;
  
+ #include "DM_admin.h"
+ #include "DM_login.h"
+ #include "DM_filemanager.h"
  #include "header.h"
 
 
@@ -76,7 +79,6 @@ void adminOpeningMenu(){
 
 void openingMenu() {
 	int menuSelection;
-	Login sessionID;
 	cout << "\n------------------------------------------------";
 	cout << "\n	Welcome to EPIC Vehicle Insurance";
 	cout << "\n------------------------------------------------";
@@ -99,9 +101,9 @@ void openingMenu() {
 	}
 }
 
-int main() {
+// int main() {
 
-	openingMenu();
+// 	openingMenu();
 
-	return 0;
-}
+// 	return 0;
+// }
