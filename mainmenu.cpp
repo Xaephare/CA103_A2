@@ -12,6 +12,7 @@ using std::string;
 void customerOpeningMenu(){
 	int menuSelection;
 	Login sessionID;
+	Customer currentCust;
 	cout << "\n------------------------------------------------";
 	cout << "\n			CUSTOMER MENU";
 	cout << "\n------------------------------------------------";

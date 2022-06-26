@@ -123,7 +123,7 @@ struct Login login;
         }
     }
 
-    void checkLogin() {
+    Login checkLogin() {
         
         bool notConfirmed = true;
         Login compare;
@@ -140,12 +140,13 @@ struct Login login;
                 cout << "Try again: ";
             }
         }
+        return login;
     }
 
- int main() {
-     // test.registerNewUser("testID");
-     //test.printFromCSV("data/login_data.csv", "101");
-     //loadLogin("data/login_data.csv", "0");
-     checkLogin();
-     return 0;
- }
+ //int main() {
+ //    // test.registerNewUser("testID");
+ //    //test.printFromCSV("data/login_data.csv", "101");
+ //    //loadLogin("data/login_data.csv", "0");
+ //    checkLogin();
+ //    return 0;
+ //}

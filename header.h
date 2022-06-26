@@ -41,15 +41,13 @@ struct Policy {
         policyType = policyExcess = policyID = "null";
     }
 };
-
 struct Admin {
     Login userLoginInfo;
     std::string ID; //Any client number of 0 is a void client or maybe an admin?
     std::string firstName,
         lastName,
         phone;
-
-//customer
+};
 struct Customer {
     Login userLoginInfo;
     std::string ID; //Any client number of 0 is a void client or maybe an admin?
