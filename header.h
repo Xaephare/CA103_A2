@@ -2,15 +2,8 @@
 #include <iostream>
 #include <vector>
 
-//file manager
-int writeTxt(std::string filename, int assignedID);
-int readTxt(std::string filename);
-void writeCsv(std::string filename, std::string incomingData);
-std::string getID(std::string csvString);
-std::string readCSV(std::string filename, std::string uniqueID);
-std::vector<std::string> CSVtoVector(std::string filename, std::string uniqueID);
 
-//login
+//Structs
 struct Login {
     std::string userID;
     std::string email;
@@ -20,26 +13,41 @@ struct Login {
         userID = email = password = "null";
     }
 };
-bool validEmail(std::string email);
-void registerNewUser(std::string newUserID);
-void printDetails();
-bool validPassword(std::string pass);
-void printFromCSV(std::string filename, std::string ID);
-bool loadLogin(std::string filename, std::string ID);
+struct Vehicle {
+    std::string ID;
+    int insuredValue;
+    std::string registration,
+        make,
+        model,
+        colour;
 
-//policy
+
+    Vehicle() {
+        ID = '0';
+        insuredValue = 0;
+        registration = make = model = colour = "unassigned";
+    }
+    //int year;
+    //int doors{};
+    //string transmission{}
+};
 struct Policy {
+    Vehicle insuredVehicle;
     std::string policyID; // Same as customer ID, as each customer can only have one policy.
-    int policyType;
+    std::string policyExcess;
+    std::string policyType;
     //vector<insVehicle>; Vehicles to be pulled from vehicle cpp
     Policy() {
-        policyType = 0;
-        policyID = "null";
+        policyType = policyExcess = policyID = "null";
     }
 };
-std::string getPolicyType();
-void printPolicy();
-void newPolicy(std::string customerID);
+
+struct Admin {
+    Login userLoginInfo;
+    std::string ID; //Any client number of 0 is a void client or maybe an admin?
+    std::string firstName,
+        lastName,
+        phone;
 
 //customer
 struct Customer {
@@ -54,44 +62,52 @@ struct Customer {
         ID = firstName = lastName = phone = "null";
     }
 };
+
+
+
+//admin
+std::string fetchAdminNum();
+void newAdmin();
+//loadAdminCSV();
+
+//customer
 std::string fetchClientNum();
 void newCustomer();
 void createNewPolicy();
+bool updateCsv();
+void customerMenu(Login session);
+Customer loadCustomer(std::string filename, std::string ID);
 
-//vehicle
-struct Vehicle {
-    int id,
-        insuredValue;
-    std::string registration,
-        make,
-        model,
-        colour;
+//file manager
+int writeTxt(std::string filename, int assignedID);
+int readTxt(std::string filename);
+void writeCsv(std::string filename, std::string incomingData);
+std::string getID(std::string csvString);
+std::string readCSV(std::string filename, std::string uniqueID);
+std::vector<std::string> CSVtoVector(std::string filename, std::string uniqueID);
 
-
-    Vehicle() {
-        id = insuredValue = 0;
-        registration = make = model = colour = "unassigned";
-    }
-    //int year;
-    //int doors{};
-    //string transmission{}
-};
-void printVehicle();
-void getVehicleInfo();
+//login
+bool validEmail(std::string email);
+void registerNewUser(std::string newUserID);
+void printDetails();
+bool validPassword(std::string pass);
+void printFromCSV(std::string filename, std::string ID);
+bool loadLogin(std::string filename, std::string ID);
+Login checkLogin();
 
 //menus
 void openingMenu();
+void customerOpeningMenu();
+void adminOpeningMenu();
 
-//admin
-struct Admin {
-    Login userLoginInfo;
-    std::string ID; //Any client number of 0 is a void client or maybe an admin?
-    std::string firstName,
-        lastName,
-        phone;
-    Policy customerPolicyInfo;
+//policy
+std::string getPolicyType(int policyChoice);
+void printPolicy();
+void newPolicy(std::string customerID);
+Policy loadPolicy(std::string filename, std::string ID);
 
-    Admin() {
-        ID = firstName = lastName = "null";
-    }
-};
+//vehicle
+void printVehicle();
+Vehicle getVehicleInfo(std::string ID);
+std::string fetchVehicleIDNum();
+Vehicle loadVehicle(std::string filename, std::string ID);

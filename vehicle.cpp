@@ -2,12 +2,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
 #include "header.h"
+using namespace std;
 
-using std::cout;
-using std::cin;
-using std::string; 
+//using std::cout;
+//using std::cin;
+//using std::string; 
 
 
 struct Vehicle vehicle;
@@ -29,43 +29,82 @@ struct Vehicle vehicle;
 //	//string transmission{}
 //};
 
+string fetchVehicleIDNum() {
+    int ID = readTxt("data/vehicle_id_counter.txt");
+    writeTxt("data/vehicle_id_counter.txt", ID);
+    string stringID = std::to_string(ID);
+    return stringID;
+}
 
-    void printVehicle(){
-        cout << "\n";
-        cout << "   VEHICLE INFORMATION FOR: " << vehicle.id << "\n";
-        cout << "   ---------------------------------- \n";
-        cout << "   Vehicle Registration:  " << vehicle.registration << "\n";
-        cout << "   Make:                  " << vehicle.make << "\n";
-        cout << "   Model:                 " << vehicle.model << "\n";
-        cout << "   Colour:                " << vehicle.colour << "\n";
-        cout << "   Insured Value:         $" << vehicle.insuredValue << "\n";
-        cout << "   ---------------------------------- \n";
 
-    }
+void printVehicle() {
+    cout << "\n";
+    cout << "   VEHICLE INFORMATION FOR: " << vehicle.ID << "\n";
+    cout << "   ---------------------------------- \n";
+    cout << "   Vehicle Registration:  " << vehicle.registration << "\n";
+    cout << "   Make:                  " << vehicle.make << "\n";
+    cout << "   Model:                 " << vehicle.model << "\n";
+    cout << "   Colour:                " << vehicle.colour << "\n";
+    cout << "   Insured Value:         $" << vehicle.insuredValue << "\n";
+    cout << "   ---------------------------------- \n";
 
-    void getVehicleInfo(){
-        // unique id to be generated once filemanager.cpp built
-        cout << "Please input vehicle information \n";
-        cout << "Enter registration: ";
-        getline(cin, vehicle.registration);
-        cout << "Enter make: ";
-        getline(cin, vehicle.make);
-        cout << "Enter model: ";
-        getline(cin, vehicle.model);
-        cout << "Enter colour: ";
-        getline(cin, vehicle.colour);
-        cout << "Enter insured value: " ;
+}
+
+Vehicle getVehicleInfo(string ID) {
+    string insuredValueStr;
+    vehicle.ID = ID;
+    cout << "Please input vehicle information \n";
+    cout << "Enter registration: \n";
+    cin >> vehicle.registration;
+    cout << "Enter make: ";
+    cin >> vehicle.make;
+    cout << "Enter model: ";
+    cin >> vehicle.model;
+    cout << "Enter colour: ";
+    cin >> vehicle.colour;
+    cout << "Enter insured value: ";
+    cin >> vehicle.insuredValue;
+    while (vehicle.insuredValue <= 1 || vehicle.insuredValue >= 100000) {
+        cout << "Invalid value. Insured value must be more than $0 and less than $100000\n";
         cin >> vehicle.insuredValue;
-            while (vehicle.insuredValue <= 1 || vehicle.insuredValue >= 100000){
-                cout << "Invalid value. Insured value must be more than $0 and less than $100000\n";
-                cin >> vehicle.insuredValue;
-            }
+        // insuredValueStr = std::to_string(vehicle.insuredValue);
+    }
+    insuredValueStr = std::to_string(vehicle.insuredValue);
 
+    string toCSV = vehicle.ID + "," + vehicle.registration + "," + vehicle.make + "," + vehicle.model + "," + vehicle.colour + "," + insuredValueStr;
+    ::writeCsv("data/vehicle_data.csv", toCSV);
+    cout << toCSV;
+
+    return vehicle;
+
+}
+
+Vehicle loadVehicle(string filename, string ID) {
+    std::vector<std::string> dataVector = CSVtoVector(filename, ID);
+
+    if (dataVector.size() == 1) {
+        vehicle.ID = dataVector[0];
+    }
+    else {
+        vehicle.ID = dataVector[0];
+        vehicle.registration = dataVector[1];
+        vehicle.make = dataVector[2];
+        vehicle.model = dataVector[3];
+        vehicle.colour = dataVector[4];
+        vehicle.insuredValue = stoi(dataVector[5]);
     }
 
+    if (dataVector[0] == "none") {
+        cout << "not found";
+    }
+    else {
+        return vehicle;
+    }
+}
 
-//int main() {
-//    getVehicleInfo(); 
-//    printVehicle();
-//    return 0;
-//}
+
+// int main() {
+//     getVehicleInfo("2000"); 
+//     printVehicle();
+//     return 0;
+// }

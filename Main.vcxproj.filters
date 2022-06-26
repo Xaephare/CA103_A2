@@ -62,4 +62,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\admin_id_counter.txt" />
+    <Text Include="data\claims_id_counter.txt" />
+    <Text Include="data\customer_id_counter.txt" />
+    <Text Include="data\vehicle_id_counter.txt" />
+  </ItemGroup>
 </Project>
