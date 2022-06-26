@@ -81,10 +81,9 @@ std::vector<std::string> CSVtoVector(string filename, string uniqueID){
         vectorData.push_back(substr);
     }
     // FOLLOWING TWO LINES PRINT VECTORS AS TEST 
-    ///*
-    for (std::size_t i = 0; i < vectorData.size(); i++)
-       std::cout << vectorData[i] << std::endl; 
-    //*/
+    //for (std::size_t i = 0; i < vectorData.size(); i++)
+    //   std::cout << vectorData[i] << std::endl; 
+
     return vectorData;
 }
 
