@@ -1,15 +1,18 @@
 
 #include <iostream>
+#include <vector>
 using std::cout;
 using std::cin;
 using std::string;
  
  #include "header.h"
 
+
 // Customer Menu
 void customerOpeningMenu(){
 	int menuSelection;
 	Login sessionID;
+	Customer currentCust;
 	cout << "\n------------------------------------------------";
 	cout << "\n			CUSTOMER MENU";
 	cout << "\n------------------------------------------------";
@@ -19,10 +22,10 @@ void customerOpeningMenu(){
 	cout << "\n		4. Exit.\n";
 	cin >> menuSelection;
 	switch (menuSelection) {
-	case 1: 
-			sessionID = checkLogin();
-			loadCustomer("data/customer_data.csv", sessionID.userID);
-			customerMenu();
+	case 1:
+		sessionID = checkLogin();
+		currentCust = loadCustomer("data/customer_data.csv", sessionID.userID);
+		customerMenu(sessionID);
 		// Logic so customerMenu opens if checkLogin successful.
 		// customerMenu(bool LoginSuccesful)
 		break;
@@ -42,6 +45,8 @@ void customerOpeningMenu(){
 // Admin Login Menu
 void adminOpeningMenu(){
 	int menuSelection;
+	Login sessionID;
+	Admin currentAdmin;
 	cout << "\n------------------------------------------------";
 	cout << "\n			ADMIN MENU";
 	cout << "\n------------------------------------------------";
@@ -52,8 +57,9 @@ void adminOpeningMenu(){
 	cin >> menuSelection;
 		switch (menuSelection) {
 	case 1: 
-		checkLogin(); // Logic so adminMenu opens if checkLogin successful.
-		// adminMenu(bool LoginSuccesful)
+		sessionID = checkLogin();
+		currentAdmin = loadAdmin("data/admin_data.csv", sessionID.userID);
+		adminMenu(sessionID);
 		break;
 	case 2:
 		newAdmin();  //called from customer.cpp and login.cpp
@@ -70,6 +76,7 @@ void adminOpeningMenu(){
 
 void openingMenu() {
 	int menuSelection;
+	Login sessionID;
 	cout << "\n------------------------------------------------";
 	cout << "\n	Welcome to EPIC Vehicle Insurance";
 	cout << "\n------------------------------------------------";
