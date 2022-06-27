@@ -50,6 +50,22 @@ void printVehicle() {
 
 }
 
+void getInsuranceValue() {
+    bool valid = true;
+    int insuredValue;
+    while (valid) {
+        cout << "Enter insured value: ";
+        cin >> insuredValue;
+        if (!insuredValue && (insuredValue > 0 && insuredValue < 1000000)) {
+            vehicle.insuredValue = insuredValue;
+            valid = false;
+        }
+        else {
+            cout << "Please enter a valid value.\n";
+        }
+    }
+}
+
 Vehicle getVehicleInfo(string ID) {
     string insuredValueStr;
     vehicle.ID = ID;
@@ -62,21 +78,14 @@ Vehicle getVehicleInfo(string ID) {
     cin >> vehicle.model;
     cout << "Enter colour: ";
     cin >> vehicle.colour;
-    cout << "Enter insured value: ";
-    cin >> vehicle.insuredValue;
-    while (vehicle.insuredValue <= 1 || vehicle.insuredValue >= 100000) {
-        cout << "Invalid value. Insured value must be more than $0 and less than $100000\n";
-        cin >> vehicle.insuredValue;
-        // insuredValueStr = std::to_string(vehicle.insuredValue);
-    }
-    insuredValueStr = std::to_string(vehicle.insuredValue);
+    getInsuranceValue();
 
+    insuredValueStr = std::to_string(vehicle.insuredValue);
     string toCSV = vehicle.ID + "," + vehicle.registration + "," + vehicle.make + "," + vehicle.model + "," + vehicle.colour + "," + insuredValueStr;
     ::writeCsv("data/vehicle_data.csv", toCSV);
     cout << toCSV;
 
     return vehicle;
-
 }
 
 Vehicle loadVehicle(string filename, string ID) {
