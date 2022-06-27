@@ -5,9 +5,7 @@ using std::cout;
 using std::cin;
 using std::string;
  
- #include "DM_admin.h"
- #include "DM_login.h"
- #include "DM_filemanager.h"
+
  #include "header.h"
 
 
