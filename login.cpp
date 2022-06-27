@@ -135,12 +135,17 @@ struct Login login;
             cin >> compare.password;
             if (loadLogin("data/login_data.csv", compare.userID) && compare.password == login.password) {
                 notConfirmed = false;
+                return login;
+            }
+            else if (loginAttempt == 2) {
+                exit(0); //on third failed atempt exit program
             }
             else {
-                cout << "Try again: ";
+                cout << "Try again: \n";
+
             }
         }
-        return login;
+
     }
 
  //int main() {
