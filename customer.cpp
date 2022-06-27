@@ -5,6 +5,7 @@
 #include <vector>
 #include <string.h>
 #include <sstream>
+#include <regex>
 
 //#include "login.h"
 //#include "filemanager.h"
@@ -38,6 +39,26 @@ struct Customer customer;
         return stringID;
     }
 
+    bool isNumeric(std::string const& str) {
+        return std::regex_match(str, std::regex("[(-|+)|][0-9]+"));
+    }
+
+    string checkPhone() {
+        bool validPhoneNum = false;
+        string phoneNum;
+
+        while (!validPhoneNum) {
+            cout << "Phone number: ";
+            cin >> phoneNum;
+            if (isNumeric(phoneNum)) { 
+                return phoneNum;
+            }
+            else {
+                cout << "Invalid phone number.\n";
+            }
+        }
+    }
+
     void newCustomer() {
         customer.ID = fetchClientNum();
         cout << "Your Customer ID number is: " << customer.ID << "\n";
@@ -46,11 +67,9 @@ struct Customer customer;
         cin >> customer.firstName;
         cout << "Last name: ";
         cin >> customer.lastName;
-        cout << "Phone number: ";
-        cin >> customer.phone;
+        customer.phone = checkPhone();
         registerNewUser(customer.ID);
         newPolicy(customer.ID);
-        
         string toCSV = customer.ID + "," + customer.firstName + "," + customer.lastName + "," + customer.phone;
         writeCsv("data/customer_data.csv", toCSV);
     }
@@ -113,21 +132,20 @@ struct Customer customer;
             cout << "\n1 - First name"
                 "\n2 - Last name"
                 "\n3 - Phone number" << endl;
-            cin >> option;
-
-            switch (option) {
-            case 1: index = 1;
-                break;
-            case 2: index = 2;
-                break;
-            case 3: index = 3;
-                break;
-            default: cout << "non-real choice";
-                return false;
+            cin >> index;
+            
+            if (index > 3 || index < 0) {
+                cout << "Invalid choice";
+                return false; //incorrect selection breaks back to last menu
             }
 
-            cout << "What should this be changed to? \n";
-            cin >> updatedValue;
+            if (index == 3) {
+                updatedValue = checkPhone();
+            }
+            else {
+                cout << "What should this be changed to? \n";
+                cin >> updatedValue;
+            }
 
             //runs through the whole original file
             while (!fin.eof()) {
@@ -135,7 +153,6 @@ struct Customer customer;
 
                 //gets line and creates new stringstream variable
                 getline(fin, line, '\n');
-                cout << line.length();
                 if (line.length() != 0) {
                     std::stringstream sstr(line);
 
@@ -211,47 +228,51 @@ struct Customer customer;
         Policy vehicleID;
         customer.userLoginInfo.email = session.email;
         int menuSelection = 0;
-        cout << "\nWelcome " << customer.firstName;
-        cout << "\nPlease select from the following options: ";
-        cout << "\n1. View your customer details.";
-        cout << "\n2. Update your customer details.";
-        cout << "\n3. View your policy.";
-        cout << "\n4. View your vehicle.";
-        cout << "\n5. View your claims.";
-        cout << "\n6. Log Out.\n";
-        cin >> menuSelection;
+        bool menuRunning = true;
+        while (menuRunning) {
+            cout << "\nWelcome " << customer.firstName;
+            cout << "\nPlease select from the following options: ";
+            cout << "\n1. View your customer details.";
+            cout << "\n2. Update your customer details.";
+            cout << "\n3. View your policy.";
+            cout << "\n4. View your vehicle.";
+            cout << "\n5. View your claims.";
+            cout << "\n6. Log Out.\n";
+            cin >> menuSelection;
 
-        switch (menuSelection) {
-	        case 1: 
-		        //Customer print statement to be print printCustomer()
+            switch (menuSelection) {
 
+            case 1:
+                //Customer print statement to be print printCustomer()
                 printCustomer();
-		        break;
-	        case 2:
+                break;
+            case 2:
                 updateCsv("data/customer_data.csv", customer.ID);
-		        //Update customer info 
-		        break;
-	        case 3:
+                //Update customer info 
+                break;
+            case 3:
                 loadPolicy("data/policy_data.csv", customer.ID);
                 printPolicy();
-		        //Print function from policy.cpp
-		        break;
-	        case 4:
+                //Print function from policy.cpp
+                break;
+            case 4:
                 vehicleID = loadPolicy("data/policy_data.csv", customer.ID);
                 loadVehicle("data/vehicle_data.csv", vehicleID.insuredVehicle.ID);
                 printVehicle();
                 //Print function from vehicle.cpp
                 break;
-            case 5: 
+            case 5:
                 //Print function from claim.cpp - will also need logic to say if a claim exists or not
                 break;
-            case 6: 
+            case 6:
+                menuRunning = false;
                 openingMenu();
                 break;
             default:
                 cout << "Please pick from one of the displayed options by pressing their respective number.";
                 break;
             }
+        }
     }
 
 //int main() {
