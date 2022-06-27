@@ -56,22 +56,22 @@ void adminOpeningMenu(){
 	cout << "\n		3. Return to Main Menu";
 	cout << "\n		4. Exit.\n";
 	cin >> menuSelection;
-		switch (menuSelection) {
-	case 1: 
-		sessionID = checkLogin();
-		currentAdmin = loadAdmin("data/admin_data.csv", sessionID.userID);
-		adminMenu(sessionID);
-		break;
-	case 2:
-		newAdmin();  //called from customer.cpp and login.cpp
-		break;
-	case 3: 
-		openingMenu();
-		break;
-	case 4: 
-	cout << "Goodbye!\n";
-	break;
-	default: cout << "Please pick from one of the displayed options by pressing their respective number.";
+	switch (menuSelection) {
+		case 1: 
+			sessionID = checkLogin();
+			currentAdmin = loadAdmin("data/admin_data.csv", sessionID.userID);
+			adminMenu(sessionID);
+			break;
+		case 2:
+			newAdmin();  //called from customer.cpp and login.cpp
+			break;
+		case 3: 
+			openingMenu();
+			break;
+		case 4: 
+			cout << "Goodbye!\n";
+			break;
+		default: cout << "Please pick from one of the displayed options by pressing their respective number.";
 	}
 }
 
@@ -99,9 +99,7 @@ void openingMenu() {
 	}
 }
 
-// int main() {
-
-// 	openingMenu();
-
-// 	return 0;
-// }
+ int main() {
+ 	openingMenu();
+ 	return 0;
+ }

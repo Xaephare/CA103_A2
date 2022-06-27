@@ -45,8 +45,11 @@ struct Admin {
     Login userLoginInfo;
     std::string ID; //Any client number of 0 is a void client or maybe an admin?
     std::string firstName,
-        lastName,
-        phone;
+        lastName;
+
+    Admin() {
+        ID = firstName = lastName = "null";
+    }
 };
 struct Customer {
     Login userLoginInfo;
@@ -60,7 +63,16 @@ struct Customer {
         ID = firstName = lastName = phone = "null";
     }
 };
+struct Claim {
+    std::string ID;
+    std::string policyID;
+    std::string claimStatus;
+    //vehicle claimedVehicle;  Will call vehicle.h file
 
+    Claim() {
+        claimStatus = ID = policyID = "null";
+    }
+};
 
 
 //admin
@@ -68,6 +80,10 @@ std::string fetchAdminNum();
 void newAdmin();
 Admin loadAdmin(std::string filename, std::string ID);
 void adminMenu(Login session);
+
+//claims
+void makeClaim(std::string policyID);
+bool updateClaim(std::string filename, std::string uniqueID);
 
 //customer
 std::string fetchClientNum();

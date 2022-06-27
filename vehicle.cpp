@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <regex>
 #include "header.h"
 using namespace std;
 
@@ -52,16 +53,19 @@ void printVehicle() {
 
 void getInsuranceValue() {
     bool valid = true;
-    int insuredValue;
+    int insuredValue = 0;
+    cout << "Enter insured value: ";
+    cin >> insuredValue;
     while (valid) {
-        cout << "Enter insured value: ";
-        cin >> insuredValue;
-        if (!insuredValue && (insuredValue > 0 && insuredValue < 1000000)) {
+        while (cin.fail()) { //catches non int entries
+            cout << "Please enter a valid value.\n";
+                cin.clear();
+                cin.ignore(INT_MAX, '\n');
+                cin >> insuredValue;
+        }
+        if (insuredValue > 0 && insuredValue < 1000000) {
             vehicle.insuredValue = insuredValue;
             valid = false;
-        }
-        else {
-            cout << "Please enter a valid value.\n";
         }
     }
 }

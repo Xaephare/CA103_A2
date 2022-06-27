@@ -80,6 +80,7 @@ struct Policy policy;
            policy.policyID = dataVector[0];
            policy.policyType = dataVector[1];
            policy.insuredVehicle.ID = dataVector[2];
+           policy.policyExcess = dataVector[3];
        }
 
        if (dataVector[0] == "none") {

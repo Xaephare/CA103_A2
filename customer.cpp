@@ -236,7 +236,7 @@ struct Customer customer;
             cout << "\n2. Update your customer details.";
             cout << "\n3. View your policy.";
             cout << "\n4. View your vehicle.";
-            cout << "\n5. View your claims.";
+            cout << "\n5. Make a claim.";
             cout << "\n6. Log Out.\n";
             cin >> menuSelection;
 
@@ -262,6 +262,7 @@ struct Customer customer;
                 //Print function from vehicle.cpp
                 break;
             case 5:
+                makeClaim(customer.ID);
                 //Print function from claim.cpp - will also need logic to say if a claim exists or not
                 break;
             case 6:
