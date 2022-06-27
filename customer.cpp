@@ -131,60 +131,63 @@ struct Customer customer;
 
             //runs through the whole original file
             while (!fin.eof()) {
-
                 row.clear();
 
                 //gets line and creates new stringstream variable
-                getline(fin, line, ' ');
-                std::stringstream sstr(line);
+                getline(fin, line, '\n');
+                cout << line.length();
+                if (line.length() != 0) {
+                    std::stringstream sstr(line);
 
-                //pushes each word from the current line into the vector
-                while (getline(sstr, word, ',')) {
-                    row.push_back(word);
-                    //if (word == "")
+                    //pushes each word from the current line into the vector
+                    while (getline(sstr, word, ',')) {
+                        row.push_back(word);
+                        //if (word == "")
+                        //    break;
+                    }
+                    //if (word == "") {
+                    //    count = 2;
                     //    break;
-                }
-                //if (word == "") {
-                //    count = 2;
-                //    break;
-                //}
+                    //}
 
 
-                fileID = row[0];
-                int rowSize = row.size();
+                    fileID = row[0];
+                    int rowSize = row.size();
 
-                if (fileID == uniqueID) {
-                    count = 1;
-                    row[index] = updatedValue;
+                    if (fileID == uniqueID) {
+                        count = 1;
+                        row[index] = updatedValue;
 
-                    if (!fin.eof()) {
+                        if (!fin.eof()) {
+                            for (int i = 0; i < rowSize - 1; i++) {
+                                // write the updated data into the new file "data/updated_file_temp_name.csv"
+                                fout << row[i] << ",";
+                            }
+                            fout << row[rowSize - 1] << "\n";
+                        }
+                    }
+                    else {
+                        if (!fin.eof()) {
+                            for (int i = 0; i < rowSize - 1; i++) {
+
+                                // write existing data into the new file
+                                fout << row[i] << ",";
+                            }
+                            fout << row[rowSize - 1] << "\n";
+                        }
+
+                    }
+                    if (fin.eof()) {
                         for (int i = 0; i < rowSize - 1; i++) {
-                            // write the updated data into the new file "data/updated_file_temp_name.csv"
+                            // write last line to new file without a newline
                             fout << row[i] << ",";
                         }
-                        fout << row[rowSize - 1] << "\n";
+                        fout << row[rowSize - 1];
+                        break;
                     }
-                }
-                else {
-                    if (!fin.eof()) {
-                        for (int i = 0; i < rowSize - 1; i++) {
-
-                            // write existing data into the new file
-                            fout << row[i] << ",";
-                        }
-                        fout << row[rowSize - 1] << "\n";
-                    }
-
-                }
-                if (fin.eof()) {
-                    for (int i = 0; i < rowSize - 1; i++) {
-                        // write last line to new file without a newline
-                        fout << row[i] << ",";
-                    }
-                    fout << row[rowSize - 1];
-                    break;
                 }
             }
+
             if (count == 0)
                 cout << "Data not found, nothing was changed.\n";
             if (count == 2)
