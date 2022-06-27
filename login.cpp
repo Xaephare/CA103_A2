@@ -131,7 +131,7 @@ struct Login login;
         for (int loginAttempt = 0; notConfirmed && loginAttempt < 3; loginAttempt++) {
             cout << "Please enter your customer number: ";
             cin >> compare.userID; 
-            cout << "Please enter you password: ";
+            cout << "Please enter your password: ";
             cin >> compare.password;
             if (loadLogin("data/login_data.csv", compare.userID) && compare.password == login.password) {
                 notConfirmed = false;
