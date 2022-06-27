@@ -5,6 +5,9 @@ using std::cout;
 using std::cin;
 using std::string;
  
+ #include "DM_admin.h"
+ #include "DM_login.h"
+ #include "DM_filemanager.h"
  #include "header.h"
 
 
@@ -45,6 +48,8 @@ void customerOpeningMenu(){
 // Admin Login Menu
 void adminOpeningMenu(){
 	int menuSelection;
+	Login sessionID;
+	Admin currentAdmin;
 	cout << "\n------------------------------------------------";
 	cout << "\n			ADMIN MENU";
 	cout << "\n------------------------------------------------";
@@ -55,10 +60,12 @@ void adminOpeningMenu(){
 	cin >> menuSelection;
 		switch (menuSelection) {
 	case 1: 
-		// checkLogin(); 
+		sessionID = checkLogin();
+		currentAdmin = loadAdmin("data/admin_data.csv", sessionID.userID);
+		adminMenu(sessionID);
 		break;
 	case 2:
-		newCustomer();  //called from customer.cpp and login.cpp
+		newAdmin();  //called from customer.cpp and login.cpp
 		break;
 	case 3: 
 		openingMenu();
@@ -94,9 +101,9 @@ void openingMenu() {
 	}
 }
 
-int main() {
+// int main() {
 
-	openingMenu();
+// 	openingMenu();
 
-	return 0;
-}
+// 	return 0;
+// }

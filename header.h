@@ -66,14 +66,16 @@ struct Customer {
 //admin
 std::string fetchAdminNum();
 void newAdmin();
-//loadAdminCSV();
+Admin loadAdmin(std::string filename, std::string ID);
+void adminMenu(Login session);
 
 //customer
 std::string fetchClientNum();
 void newCustomer();
 void createNewPolicy();
-bool updateCsv();
+bool updateCsv(std::string filename, std::string uniqueID);
 void customerMenu(Login session);
+void printCustomer();
 Customer loadCustomer(std::string filename, std::string ID);
 
 //file manager
