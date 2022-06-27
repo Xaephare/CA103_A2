@@ -41,7 +41,7 @@ int readTxt(string filename){   // Reads ID number ready to be assigned
 void writeCsv(string filename, string incomingData) { // Called within other functions, takes incoming data as a string and writes it to CSV.
 	std::ofstream file;
 	file.open(filename, std::ios::app);
-	file << incomingData << "\n";
+	file << "\n" << incomingData;
 	file.close();
 }
 
