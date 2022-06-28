@@ -123,7 +123,7 @@ Login checkLogin() {
 	Login compare;
 
 	for (int loginAttempt = 0; notConfirmed && loginAttempt < 3; loginAttempt++) {
-		cout << "Please enter your customer number: ";
+		cout << "Please enter your user ID number: ";
 		cin >> compare.userID;
 		cout << "Please enter your password: ";
 		cin >> compare.password;

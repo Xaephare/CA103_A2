@@ -68,7 +68,7 @@ void adminMenu(Login session) {  // Login session
 		cout << "\nPlease select from the following options: ";
 		cout << "\n1. View a customer's details.";
 		cout << "\n2. Update a customer's details.";
-		cout << "\n3. Approve a claim.";
+		cout << "\n3. View/Approve a claim.";
 		cout << "\n4. Log out.\n";
 		cin >> menuSelection;
 		cout << std::endl;

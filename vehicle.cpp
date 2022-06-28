@@ -75,7 +75,6 @@ Vehicle getVehicleInfo(string ID) {
 	insuredValueStr = std::to_string(vehicle.insuredValue);
 	string toCSV = vehicle.ID + "," + vehicle.registration + "," + vehicle.make + "," + vehicle.model + "," + vehicle.colour + "," + insuredValueStr;
 	::writeCsv("data/vehicle_data.csv", toCSV);
-	cout << toCSV;
 
 	return vehicle;
 }

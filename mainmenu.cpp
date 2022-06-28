@@ -28,7 +28,6 @@ void customerOpeningMenu() { //will pull functions predominantly from customer.c
 		break;
 	case 2:
 		newCustomer();  //called from customer.cpp and login.cpp
-		break;
 	case 3:
 		openingMenu();
 		break;
