@@ -41,12 +41,13 @@ struct Policy policy;
         return policy.policyType;
     }
 
-    void printPolicy(){
-        cout << "   \nPOLICY INFORMATION FOR: " << policy.policyID << "\n";
+    void printPolicy() {
+        cout << "\n POLICY INFORMATION FOR: " << policy.policyID << "\n";
         cout << "   ---------------------------------- \n";
         cout << "   Policy Type:            " + policy.policyType << "\n";
-        cout << "   TO DO: Add vector of vehicles and logic to print them.\n";
-        cout << "\n   ---------------------------------- \n";
+        cout << "   Policy Excess:          " + policy.policyExcess << "\n";
+        cout << "   Vehicles on policy :     1 \n";
+        cout << "   ---------------------------------- \n";
     }
 
    void newPolicy(string customerID){  // Called in customer struct.

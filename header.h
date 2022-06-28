@@ -65,15 +65,18 @@ struct Customer {
 };
 struct Claim {
     std::string ID;
-    std::string policyID;
-    std::string claimStatus;
-    //vehicle claimedVehicle;  Will call vehicle.h file
+    std::string policyType;
+    std::string policyExcess;
+    std::string vehicleRegistration;
+    std::string insuredValue;
+    std::string claimStatus; //bool that will be written to CSV as either 1 or 0.
+        //vehicle claimedVehicle;  Will call vehicle.h file
 
     Claim() {
-        claimStatus = ID = policyID = "null";
+        ID = policyType = policyExcess = vehicleRegistration = insuredValue = "null";
+        claimStatus = "null";
     }
 };
-
 
 //admin
 std::string fetchAdminNum();
@@ -82,8 +85,11 @@ Admin loadAdmin(std::string filename, std::string ID);
 void adminMenu(Login session);
 
 //claims
-void makeClaim(std::string policyID);
+Claim loadClaim(std::string filename, std::string ID);
+Claim makeClaim(std::string policyID);
 bool updateClaim(std::string filename, std::string uniqueID);
+void printClaim();
+
 
 //customer
 std::string fetchClientNum();

@@ -76,6 +76,8 @@ struct Admin admin;
             cout << "\n3. Approve a claim.";
             cout << "\n4. Log out.\n";
             cin >> menuSelection;
+            cout << std::endl;
+
             switch (menuSelection) {
             case 1:
                 cout << "Please enter the ID number of the customer you would like to view: ";
@@ -92,8 +94,20 @@ struct Admin admin;
             case 3:
                 cout << "Please enter the ID number of the client whose claim you would like to edit: ";
                 cin >> viewCustomerID;
-                updateClaim("data/claim_data.csv", viewCustomerID);
-                //Print function from policy.cpp
+                loadClaim("data/claim_data.csv", viewCustomerID);
+                printClaim();
+
+                char choice;
+                cout << "Do you want to approve this claim? (Y/n): ";
+                cin >> choice;
+                if (choice == 'y' || choice == 'Y') {
+                    updateClaim("data/claim_data.csv", viewCustomerID);
+                }
+                else {
+                    cout << "---------------------------------- \n";
+                    cout << "Claim was not approved.\n";
+                    cout << "---------------------------------- \n";
+                }
                 break;
             case 4:
                 menuRunning = false;
