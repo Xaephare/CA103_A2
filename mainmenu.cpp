@@ -59,7 +59,6 @@ void adminOpeningMenu() { //will pull functions predominantly from admin.cpp inc
 		break;
 	case 2:
 		newAdmin();  //called from customer.cpp and login.cpp
-		break;
 	case 3:
 		openingMenu();
 		break;
