@@ -34,4 +34,4 @@ KEY:
 a "varname" with no suffix is a folder
 var."txt"/"csv are whatever the file type is 
 FILES AND FOLDERS MUST! match the names in here, all lower case full names "" for spaces
-all data foes into data folder
+all data foes into data folder.
