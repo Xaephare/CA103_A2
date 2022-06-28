@@ -79,7 +79,7 @@ void adminMenu(Login session) {  // Login session
 			cin >> viewCustomerID;
 			selectedCustomer = loadCustomer("data/customer_data.csv", viewCustomerID);
 			loadLogin("data/login_data.csv", viewCustomerID);
-			printCustomer();
+			printCustomer(); //further debugging needed, when admin calls this it does not print customer email.
 			break;
 		case 2:
 			cout << "Please enter the ID number of the customer you would like to update the details: ";
