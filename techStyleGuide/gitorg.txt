@@ -1,0 +1,37 @@
+ALL STRUCTS ARE DEFINED IN HEADER.H
+
+
+GIT REPO
+--header.h  -- all structs defined. Includes functions from all cpps to be called. 
+--login.cpp   -- Login struct. Includes functions for checking email and password are valid, assigning new userIDs and user login attempts (x 3)
+--customer.cpp  -- Customer struct. Includes customer menu, checks for valid phone numbers and functions for adding and updating customer info.
+--admin.cpp  -- Admin Struct. Includes admin menu and access to updateCustomer function as well as claim approval functions.
+--claim.cpp  -- Claim struct - make claim(customer) and approve claims (admin) functions.
+--policy.cpp 
+--vehicle.cpp
+--main_menu.cpp  -- Calls main. Opening menus for app and admin/customer menus. 
+--filemanager.cpp  -- Functions for reading & writing TXT and CSV files. ID counters for all objects and CSVtoVector for the recinstruction of saved objects.
+
+
+--data
+----policy_id_counter.txt <--counter for unique ids  -- DEFUNCT - now uses customer ID
+----claim_id_counter.txt <--counterfor unique ids  -- DEFUNCT - now uses customer ID
+----customer_id_counter.txt  <- id counters for unique ids
+----admin_id_counter.txt  <- id counters for unique ids
+----vehicle_id_counter.txt < --id counter vehicle
+----login_data.csv <-- csv of login structs
+----customer_data.csv <- csv of customer structs
+----admin_data.csv <- csv of admin structs
+----claim_data.csv <- csv of claim structs
+----policy_data.csv <- csv of policy structs
+----vehicle_data.csv <- csv of vehicle structs
+
+
+------================================-------
+
+KEY:
+-- is a directory layer
+a "varname" with no suffix is a folder
+var."txt"/"csv are whatever the file type is 
+FILES AND FOLDERS MUST! match the names in here, all lower case full names "" for spaces
+all data foes into data folder.
