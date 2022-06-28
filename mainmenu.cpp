@@ -1,18 +1,16 @@
-
 #include <iostream>
 #include <vector>
+#include "header.h"
+
 using std::cout;
 using std::cin;
 using std::string;
- 
-
- #include "header.h"
 
 
 // Customer Menu
-void customerOpeningMenu(){
+void customerOpeningMenu() { //will pull functions predominantly from customer.cpp including customer menu
 	int menuSelection;
-	Login sessionID;
+	Login sessionID; //structs are defined in header.h
 	Customer currentCust;
 	cout << "\n------------------------------------------------";
 	cout << "\n			CUSTOMER MENU";
@@ -27,24 +25,22 @@ void customerOpeningMenu(){
 		sessionID = checkLogin();
 		currentCust = loadCustomer("data/customer_data.csv", sessionID.userID);
 		customerMenu(sessionID);
-		// Logic so customerMenu opens if checkLogin successful.
-		// customerMenu(bool LoginSuccesful)
 		break;
 	case 2:
 		newCustomer();  //called from customer.cpp and login.cpp
 		break;
-	case 3: 
+	case 3:
 		openingMenu();
 		break;
-	case 4: 
-	cout << "Goodbye!\n";
-	break;
+	case 4:
+		cout << "Goodbye!\n";
+		break;
 	default: cout << "Please pick from one of the displayed options by pressing their respective number.";
 	}
 }
 
 // Admin Login Menu
-void adminOpeningMenu(){
+void adminOpeningMenu() { //will pull functions predominantly from admin.cpp including admin menu
 	int menuSelection;
 	Login sessionID;
 	Admin currentAdmin;
@@ -57,21 +53,21 @@ void adminOpeningMenu(){
 	cout << "\n		4. Exit.\n";
 	cin >> menuSelection;
 	switch (menuSelection) {
-		case 1: 
-			sessionID = checkLogin();
-			currentAdmin = loadAdmin("data/admin_data.csv", sessionID.userID);
-			adminMenu(sessionID);
-			break;
-		case 2:
-			newAdmin();  //called from customer.cpp and login.cpp
-			break;
-		case 3: 
-			openingMenu();
-			break;
-		case 4: 
-			cout << "Goodbye!\n";
-			break;
-		default: cout << "Please pick from one of the displayed options by pressing their respective number.";
+	case 1:
+		sessionID = checkLogin();
+		currentAdmin = loadAdmin("data/admin_data.csv", sessionID.userID);
+		adminMenu(sessionID);
+		break;
+	case 2:
+		newAdmin();  //called from customer.cpp and login.cpp
+		break;
+	case 3:
+		openingMenu();
+		break;
+	case 4:
+		cout << "Goodbye!\n";
+		break;
+	default: cout << "Please pick from one of the displayed options by pressing their respective number.";
 	}
 }
 
@@ -86,20 +82,20 @@ void openingMenu() {
 	cout << "\n		3. Exit.\n";
 	cin >> menuSelection;
 	switch (menuSelection) {
-	case 1: 
+	case 1:
 		customerOpeningMenu();
 		break;
 	case 2:
 		adminOpeningMenu();
 		break;
-	case 3: 
+	case 3:
 		cout << "Goodbye!\n";
-	break;
+		break;
 	default: cout << "Please pick from one of the displayed options by pressing their respective number.";
 	}
 }
 
- int main() {
- 	openingMenu();
- 	return 0;
- }
+int main() {
+	openingMenu();
+	return 0;
+}

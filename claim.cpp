@@ -54,7 +54,7 @@ Claim loadClaim(string filename, string ID) {
 string printClaimStatus() {
 	string claimstat;
 	if (stoi(claim.claimStatus) == 1) {
-	claimstat = "Approved";
+		claimstat = "Approved";
 	}
 	else {
 		claimstat = "Pending Approval";
@@ -71,7 +71,7 @@ void printClaim() {
 	cout << "	Excess: $" << claim.policyExcess << "\n";
 	cout << "	Insured vehicle registration:" << claim.vehicleRegistration << "\n";
 	cout << "	Insured value: $" << claim.insuredValue << "\n";
-	cout << "	Claim status : "<< printClaimStatus() << "\n";
+	cout << "	Claim status : " << printClaimStatus() << "\n";
 	cout << "	----------------------------------\n";
 }
 
@@ -192,9 +192,3 @@ bool updateClaim(string filename, string uniqueID) {
 
 	return true;
 }
-
-//int main(){
-//    //claim test;
-//    //makeClaim();
-//    updateClaimStatus(0);
-//}

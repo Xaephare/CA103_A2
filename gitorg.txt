@@ -1,3 +1,6 @@
+ALL STRUCTS ARE DEFINED IN HEADER.H
+
+
 GIT REPO
 --login.cpp
 --customer.cpp
